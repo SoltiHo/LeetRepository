@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Regular_Expression_Matching", "Regular_Expression_Matching\Regular_Expression_Matching.vcxproj", "{B47CD281-1E84-4AE0-A123-9111BED02F48}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoogleTest", "GoogleTest\GoogleTest.vcxproj", "{3E2B2042-4B22-40EB-A267-7E13CB80BE3D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Regular_Expression_Matching_ULT", "Regular_Expression_Matching_ULT\Regular_Expression_Matching_ULT.vcxproj", "{132B2858-3F47-4C9C-83B2-306FD009434E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B47CD281-1E84-4AE0-A123-9111BED02F48}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B47CD281-1E84-4AE0-A123-9111BED02F48}.Debug|Win32.Build.0 = Debug|Win32
+		{B47CD281-1E84-4AE0-A123-9111BED02F48}.Release|Win32.ActiveCfg = Release|Win32
+		{B47CD281-1E84-4AE0-A123-9111BED02F48}.Release|Win32.Build.0 = Release|Win32
+		{3E2B2042-4B22-40EB-A267-7E13CB80BE3D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3E2B2042-4B22-40EB-A267-7E13CB80BE3D}.Debug|Win32.Build.0 = Debug|Win32
+		{3E2B2042-4B22-40EB-A267-7E13CB80BE3D}.Release|Win32.ActiveCfg = Release|Win32
+		{3E2B2042-4B22-40EB-A267-7E13CB80BE3D}.Release|Win32.Build.0 = Release|Win32
+		{132B2858-3F47-4C9C-83B2-306FD009434E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{132B2858-3F47-4C9C-83B2-306FD009434E}.Debug|Win32.Build.0 = Debug|Win32
+		{132B2858-3F47-4C9C-83B2-306FD009434E}.Release|Win32.ActiveCfg = Release|Win32
+		{132B2858-3F47-4C9C-83B2-306FD009434E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

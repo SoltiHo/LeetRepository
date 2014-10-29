@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Merge_k_Sorted_Lists", "Merge_k_Sorted_Lists\Merge_k_Sorted_Lists.vcxproj", "{16C10E63-694D-48B6-9655-C1FB54152FE7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoogleTest", "GoogleTest\GoogleTest.vcxproj", "{250A1F05-F981-496B-8182-EEBC2FAD32E5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Merge_k_Sorted_Lists_ULT", "Merge_k_Sorted_Lists_ULT\Merge_k_Sorted_Lists_ULT.vcxproj", "{6D02E9EF-C938-43B8-88E3-8BD61BD74B1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16C10E63-694D-48B6-9655-C1FB54152FE7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{16C10E63-694D-48B6-9655-C1FB54152FE7}.Debug|Win32.Build.0 = Debug|Win32
+		{16C10E63-694D-48B6-9655-C1FB54152FE7}.Release|Win32.ActiveCfg = Release|Win32
+		{16C10E63-694D-48B6-9655-C1FB54152FE7}.Release|Win32.Build.0 = Release|Win32
+		{250A1F05-F981-496B-8182-EEBC2FAD32E5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{250A1F05-F981-496B-8182-EEBC2FAD32E5}.Debug|Win32.Build.0 = Debug|Win32
+		{250A1F05-F981-496B-8182-EEBC2FAD32E5}.Release|Win32.ActiveCfg = Release|Win32
+		{250A1F05-F981-496B-8182-EEBC2FAD32E5}.Release|Win32.Build.0 = Release|Win32
+		{6D02E9EF-C938-43B8-88E3-8BD61BD74B1E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6D02E9EF-C938-43B8-88E3-8BD61BD74B1E}.Debug|Win32.Build.0 = Debug|Win32
+		{6D02E9EF-C938-43B8-88E3-8BD61BD74B1E}.Release|Win32.ActiveCfg = Release|Win32
+		{6D02E9EF-C938-43B8-88E3-8BD61BD74B1E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
