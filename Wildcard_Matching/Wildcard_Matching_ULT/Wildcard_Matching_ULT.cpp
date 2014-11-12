@@ -2,6 +2,96 @@
 #include "WildcardMatching.h"
 
 #include <vector>
+
+TEST(LeetCode, Fail02){
+    char* s = "baaba\0";
+    char* p = "*b*b*a\0";
+
+    Solution sol;
+    ASSERT_EQ(sol.isMatch(s, p), true);
+
+}
+
+TEST(LeetCode, Fail03){
+    char* s = "aaaabbaa\0";
+    char* p = "*b*a*aa\0";
+
+    Solution sol;
+    ASSERT_EQ(sol.isMatch(s, p), false);
+
+}
+
+TEST(LeetCode, Fail01){
+    char* s = "abbbba\0";
+    char* p = "a**a*?\0";
+
+    Solution sol;
+    ASSERT_EQ(sol.isMatch(s, p), false);
+
+}
+
+
+TEST(Basic, MyTest01){
+    char* s = new char[5];
+    s[4] = '\0';
+    for (int i = 0; i < 4; ++i){
+        s[i] = 'a';
+    }
+    char* p = new char[7];
+    p[0] = '*';
+    p[5] = '*';
+    p[6] = '\0';
+    for (int i = 1; i < 5; ++i){
+        p[i] = 'a';
+    }
+
+    Solution sol;
+    ASSERT_EQ(sol.isMatch(s, p), true);
+
+}
+
+
+
+TEST(Leetcode, Timeout07){
+    char* s = new char[32317];
+    s[32316] = '\0';
+    for (int i = 0; i < 32316; ++i){
+        s[i] = 'a';
+    }
+    char* p = new char[32319];
+    p[0] = '*';
+    p[32317] = '*';
+    p[32318] = '\0';
+    for (int i = 1; i < 32317; ++i){
+        p[i] = 'a';
+    }
+
+    Solution sol;
+    ASSERT_EQ(sol.isMatch(s, p), true);
+
+}
+
+
+TEST(Leetcode, Timeout06){
+    char* s = new char[32317];
+    s[32316] = '\0';
+    for (int i = 0; i < 32316; ++i){
+        s[i] = 'a';
+    }
+    char* p = new char[32320];
+    p[0] = '*';
+    p[32318] = '*';
+    p[32319] = '\0';
+    for (int i = 1; i < 32318; ++i){
+        p[i] = 'a';
+    }
+
+    Solution sol;
+    ASSERT_EQ(sol.isMatch(s, p), false);
+
+}
+
+
 TEST(Leetcode, Timeout05){
     char* s = "aabb\0";
     char* p = "a?b*b\0";

@@ -20,201 +20,8 @@
 
 #include <vector>
 #include <algorithm>
+#include <iostream>
 using namespace std;
-
-vector<int> asterixVector;
-vector<int> questionMarkVector;
-
-bool isMatchByDivideAndConquer(const char *s, int sSize, const char *p, int pSize){
-    // filter out some basic cases,  truncate unnecessary parts
-    int numTruncatedFromLeft = 0;
-    int numTruncatedFromRight = 0;
-    for (int i = 0; i < min(sSize, pSize); ++i){
-        if ((s[i] != p[i]) && (p[i] != '*') && (p[i] != '?')){
-            return false;
-        }
-        else if ((p[i] == '*') || (p[i] == '?')){
-            break;
-        }
-        else{
-            // regular char matched, can be truncated
-            numTruncatedFromLeft++;
-        }
-    }
-
-    if (numTruncatedFromLeft > 0){
-        s = s + numTruncatedFromLeft;
-        sSize -= numTruncatedFromLeft;
-        p = p + numTruncatedFromLeft;
-        pSize -= numTruncatedFromLeft;
-    }
-
-    for (int i = 0; i < min(sSize, pSize); ++i){
-        if ((s[sSize - 1 - i] != p[pSize - 1 - i]) && (p[pSize - 1 - i] != '*') && (p[pSize - 1 - i] != '?')){
-            return false;
-        }
-        else if ((p[pSize - 1 - i] == '*') || (p[pSize - 1 - i] == '?')){
-            break;
-        }
-        else{
-            // regular char matched, can be truncated
-            numTruncatedFromRight++;
-        }
-    }
-
-    if (numTruncatedFromRight > 0){
-        sSize -= numTruncatedFromRight;
-        pSize -= numTruncatedFromRight;
-    }
-
-
-    // filter out base cases
-    if (sSize <= 0){
-        if (pSize <= 0){
-            return true;
-        }
-        else{
-            for (int i = 0; i < pSize; ++i){
-                if (p[i] != '*'){
-                    return false;
-                }
-            }
-            return true;
-        }
-    }
-    else if (sSize == 1){
-        if (pSize <= 0){
-            return false;
-        }
-        bool notMatchedYet = true;
-        for (int i = 0; i < pSize; ++i){
-            if ((p[i] != '*') && (p[i] != '?') && (p[i] != s[0])){
-                return false;
-            }
-            if ((p[i] == s[0]) || (p[i] == '?')){
-                if (notMatchedYet){
-                    notMatchedYet = false;
-                }
-                else{
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-    else{
-        if (pSize <= 0){
-            return false;
-        }
-        else if (pSize == sSize){
-            for (int i = 0; i < pSize; ++i){
-                if ((s[i] != p[i]) && (p[i] != '*') && (p[i] != '?')){
-                    return false;
-                }
-            }
-            return true;
-        }
-        else if (pSize == 1){
-            if (p[0] != '*'){
-                return false;
-            }
-            return true;
-        }
-    }
-
-
-
-    // scan through p to find its longest fixed substring (without ? or *)
-    int currentLength = 0;
-    int currentStartIndex = -1;
-    int longestLength = 0;
-    int longestStartIndex = -1;
-
-    // find the longest fixed string.  O(m)
-    // and record the '?'s and '*'s
-    asterixVector.clear();
-    questionMarkVector.clear();
-    for (int i = 0; i < pSize; ++i){
-        if ((p[i] != '*') && (p[i] != '?')){
-            currentLength++;
-            if (currentStartIndex == -1){
-                currentStartIndex = i;
-            }
-        }
-        else{
-            // '*' or '?'
-            if (longestLength < currentLength){
-                longestLength = currentLength;
-                longestStartIndex = currentStartIndex;
-            }
-            currentStartIndex = -1;
-            currentLength = 0;
-
-            if (p[i] == '*'){
-                asterixVector.push_back(i);
-            }
-            else {
-                // '?'
-                questionMarkVector.push_back(i);
-            }
-        }
-    }
-    if ((currentLength > 0) && (longestLength < currentLength)){
-        longestLength = currentLength;
-        longestStartIndex = currentStartIndex;
-    }
-
-
-    if (longestStartIndex == -1){
-        // no fixed string, only * or ?
-        if (sSize >= questionMarkVector.size()){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    // fixedStringStarts
-    // scan through s to find the occurrence
-    int fixedStringStarts = 0;
-    bool results = false;
-    while (fixedStringStarts >= 0){
-        for (int i = 0; i < sSize; ++i){
-            fixedStringStarts = -1;
-            if (s[i] == p[longestStartIndex]){
-                for (int x = 0; (x < longestLength) && (i + x < sSize); ++x){
-                    if (s[i + x] != p[longestStartIndex + x]){
-                        break;
-                    }
-                    if (x == longestLength - 1){
-                        // survive to the last, this is a match
-                        fixedStringStarts = i;
-
-                        // then we can recursive call based on the fixed strings
-                        while ((results == false) && (fixedStringStarts >= 0)){
-                            results =
-                                (isMatchByDivideAndConquer(s, fixedStringStarts, p, longestStartIndex)) &&   // the left remaining
-                                (isMatchByDivideAndConquer(s + fixedStringStarts + longestLength, sSize - fixedStringStarts - longestLength,
-                                p + longestStartIndex + longestLength, pSize - longestStartIndex - longestLength));     // the right remaining
-
-                            if (results == false){
-                                // this one doesn't work, try next one
-                                fixedStringStarts = -1;
-                            }
-                            else{
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    return results;
-}
-
 
 class Solution {
 public:
@@ -230,6 +37,7 @@ public:
         while (*(p + pSize) != '\0'){
             if (p[pSize] == '*'){
                 if ((pSize > 0) && (p[pSize - 1] == '*')){
+                    // previous is also a *, no need to repeat, so skip this one
                     pSize++;
                     continue;
                 }
@@ -238,154 +46,246 @@ public:
             pSize++;
         }
 
-        return isMatchByDivideAndConquer(s, sSize, preprocessedP.data(), preprocessedP.size());
-    }
-
-
-
-    //bool isMatch_pureDP(const char *s, const char *p) {
-    //    // find the length of the two strings
-    //    unsigned int sSize = 0;
-    //    unsigned int pSize = 0;
-    //    while (*(s + sSize) != '\0'){
-    //        sSize++;
-    //    }
-
-    //    while (*(p + pSize) != '\0'){
-    //        pSize++;
-    //    }
-
-    //    // initialize availabilityTable table
-    //    // '*' and '?' don't need to check
-
-    //    availabilityTable = new int[sSize * pSize];
-
-    //    for (int y = 0; y < pSize; ++y){
-    //        for (int x = sSize - 1; x >= 0; --x){
-    //            if ((p[y] == '*') || (p[y] == '?')){
-    //                continue;
-    //            }
-    //            if (s[x] == p[y]){
-    //                availabilityTable[y*sSize + x] = 1;
-    //            }
-    //            if (x < sSize - 1){
-    //                availabilityTable[y*sSize + x] += availabilityTable[y*sSize + x + 1];
-    //            }
-    //        }
-    //    }
-
-
-    //    // initialize the global DP table
-
-    //    globalDPTable = new int[sSize * pSize];
-    //    memset(globalDPTable, 0, sizeof(int)* sSize * pSize);
-
-    //    int fromTopLeft = 0;
-    //    int fromLeft = 0;
-    //    for (int y = 0; y < pSize; ++y){
-    //        for (int x = 0; x < sSize; ++x){
-    //            if (y == 0){
-    //                // seed row
-    //                if (p[y] == '*'){
-    //                    globalDPTable[y*sSize + x] = 1;
-    //                }
-    //                else if (p[y] == '?'){
-    //                    if (x == 0){
-    //                        globalDPTable[y*sSize + x] = 1;
-    //                    }
-    //                }
-    //                else if (p[y] == s[x]){
-    //                    if ((x == 0) && (s[x] == p[y])){
-    //                        globalDPTable[y*sSize + x] = 1;
-    //                    }
-    //                }
-    //            } // end first row
-    //            else {
-    //                // regular rows
-    //                if (p[y] == '*'){
-    //                    // fromTopLeft
-    //                    if ()
-    //                }
-    //                else if (p[y] == '?'){
-    //                    if (x == 0){
-    //                        globalDPTable[y*sSize + x] = 1;
-    //                    }
-    //                }
-    //                else if (p[y] == s[x]){
-    //                    if ((x == 0) && (s[x] == p[y])){
-    //                        globalDPTable[y*sSize + x] = 1;
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
-
-    // correct but slow
-    bool isMatch_simpleRecursive(const char *s, const char *p) {
-        // base cases
-        if (*s == '\0'){
-            if (*p == '\0'){
-                return true;
-            }
-            else if (*p == '*'){
-                unsigned int i = 0;
-                while (*(p + i) == '*'){
-                    i++;
+        // find the longest non-wildcard string and cut the problem into 2 parts
+        int currStartIdx = 0;
+        int maxStartIdx = 0;
+        int maxLength = 0;
+        int currLength = 0;
+        bool inCounting = false;;
+        int pNonAsteriskLength = 0;
+        for (int i = 0; i < preprocessedP.size(); ++i){
+            if ((preprocessedP[i] != '?') && (preprocessedP[i] != '*')){
+                // non wildcard char
+                if (!inCounting){
+                    currStartIdx = i;
+                    inCounting = true;
                 }
-                return isMatch(s, p + i);
-            }
-            else {
-                return false;
-            }
-        }
-        else{
-            if (*p == '\0'){
-                return false;
-            }
-        }
-
-
-
-        bool results = false;
-        if (*s == *p){
-            // char match
-            results = isMatch(s + 1, p + 1);
-        }
-        else if (*p == '*'){
-            // to control the amount of recursive calls,
-            // split into 3 layers of call
-            // plus, consecutive * is the same as single *
-            // want to avoid redundant call from multiple *
-
-            unsigned int i = 0;
-            while (*(p + i) == '*'){
-                i++;
-            }
-
-            if (isMatch(s + 1, p + i) == true){
-                results = true;
-            }
-            else if (isMatch(s, p + i) == true){
-                results = true;
-            }
-            else if (isMatch(s + 1, p)){
-                results = true;
+                pNonAsteriskLength++;
             }
             else{
-                results = false;
+                // wildcard char
+                if (inCounting){
+                    // close the counting and produce the length
+                    currLength = i - currStartIdx;
+                    if (maxLength < currLength){
+                        maxLength = currLength;
+                        maxStartIdx = currStartIdx;
+                    }
+                    inCounting = false;
+                }
+
+                if (preprocessedP[i] == '?'){
+                    pNonAsteriskLength++;
+                }
             }
         }
-        else if (*p == '?'){
-            results = isMatch(s + 1, p + 1);
-        }
-        else{
-            // char doesn't match, and *p is not a wildcard.
-            // no way to match.
-            results = false;
+
+        if (inCounting){
+            // close the counting and produce the length
+            currLength = preprocessedP.size() - currStartIdx;
+            if (maxLength < currLength){
+                maxLength = currLength;
+                maxStartIdx = currStartIdx;
+            }
         }
 
-        return results;
+        if (pNonAsteriskLength > sSize){
+            // can never match, no enough char in s to satisfy non-asterisk char in p
+            return false;
+        }
+
+        // s must have the same non-wildcard string, otherwise it can never match
+        for (int i = 0; i <= sSize - maxLength; ++i){
+            if (memcmp(s + i, preprocessedP.data() + maxStartIdx, sizeof(char)* maxLength) == 0){
+                // match found 
+                bool result = false;
+                // compare the left remaining
+                result = isMatch_DP(s, i, preprocessedP.data(), maxStartIdx);
+                if (result == false){
+                    // left remaining is already impossible
+                    continue;
+                }
+                // compare the right remaining
+                result = isMatch_DP(s + i + maxLength, sSize - i - maxLength,
+                    preprocessedP.data() + maxStartIdx + maxLength, preprocessedP.size() - maxStartIdx - maxLength);
+
+                if (result == true){
+                    // both match
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    bool isMatch_DP(const char *s, const int sSize, const char *p, const int pSize) {
+        // filter out base cases
+        if (sSize <= 0){
+            if (pSize <= 0){
+                return true;
+            }
+            else{
+                for (int i = 0; i < pSize; ++i){
+                    if (p[i] != '*'){
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        else if (sSize == 1){
+            if (pSize <= 0){
+                return false;
+            }
+            bool matched = false;
+            for (int i = 0; i < pSize; ++i){
+                if ((p[i] != '*') && (p[i] != '?') && (p[i] != s[0])){
+                    return false;
+                }
+
+                // char matched or matched with a '?'
+                if ((p[i] == s[0]) || (p[i] == '?')){
+                    if (matched){
+                        // too many '?' that must take at least one char
+                        // so return false since it's impossible to match the extra '?'
+                        return false;
+                    }
+                    else{
+                        matched = true;
+                    }
+                }
+            }
+            return true;
+        }
+        else{
+            // sSize >= 2
+            if (pSize <= 0){
+                return false;
+            }
+            else if (pSize == 1){
+                if (p[0] != '*'){
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        // initialize the global DP table
+        int** possiblePath = new int*[3];
+        memset(possiblePath, 0, sizeof(int*)* 3);
+        possiblePath[0] = new int[sSize];
+        memset(possiblePath[0], 0, sizeof(int)* sSize);
+        possiblePath[1] = new int[sSize];
+        memset(possiblePath[1], 0, sizeof(int)* sSize);
+
+        int fromTopLeft = 0;
+        int fromLeft = 0;
+        int possiblePathFound = 0;
+        bool firstNonZeroInPrevRowFound = false;
+        int currentRowIdx = 0;
+        int prevRowIdx = 0;
+
+        bool result = false;
+        for (int y = 0; y < pSize; ++y){
+            firstNonZeroInPrevRowFound = false;
+            possiblePathFound = 0;
+            currentRowIdx = y % 2;
+            prevRowIdx = (currentRowIdx + 1) % 2;
+            memset(possiblePath[currentRowIdx], 0, sizeof(int)* sSize);
+            for (int x = 0; x < sSize; ++x){
+                if (y == 0){
+                    // seed row
+                    if (p[0] == '*'){
+                        possiblePath[currentRowIdx][x] = 1;
+                        possiblePathFound++;
+                    }
+                    else if (p[y] == '?'){
+                        if (x == 0){
+                            possiblePath[currentRowIdx][x] = 1;
+                            possiblePathFound++;
+                            break;
+                        }
+                    }
+                    else if (p[y] == s[x]){
+                        if ((x == 0) && (s[x] == p[y])){
+                            possiblePath[currentRowIdx][x] = 1;
+                            possiblePathFound++;
+                            break;
+                        }
+                    }
+                    else{
+                        // p[0] is not '?' nor '*' and it doesn't match s[0], impossible to match
+                        result = false;
+                        goto finish;
+                    }
+                } // end first row
+                else {
+                    // regular rows
+                    if (p[y] == '*'){
+                        if (possiblePath[prevRowIdx][x] == 1){
+                            firstNonZeroInPrevRowFound = true;
+                        }
+
+                        if (firstNonZeroInPrevRowFound){
+                            // found, just repeat 1
+                            possiblePath[currentRowIdx][x] = 1;
+                            possiblePathFound++;
+                        }
+                    }
+                    else if (p[y] == '?'){
+                        if ((x > 0) && (possiblePath[prevRowIdx][x - 1] == 1)){
+                            // '?' matches any char, no need to check char
+                            possiblePath[currentRowIdx][x] = 1;
+                            possiblePathFound++;
+                        }
+
+                        if (p[y - 1] == '*'){
+                            if (((x > 0) && (possiblePath[prevRowIdx][x - 1] == 1)) ||
+                                ((x == 0) && (possiblePath[prevRowIdx][x] == 1)))
+                            {
+                                // '?' matches any char, no need to check char
+                                possiblePath[currentRowIdx][x] = 1;
+                                possiblePathFound++;
+                            }
+                        }
+                    }
+                    else{
+                        // normal char 
+                        if ((x > 0) && (possiblePath[prevRowIdx][x - 1] == 1) && (p[y] == s[x])){
+                            // char matched
+                            possiblePath[currentRowIdx][x] = 1;
+                            possiblePathFound++;
+                        }
+
+                        if (p[y - 1] == '*'){
+                            if (((x > 0) && (possiblePath[prevRowIdx][x - 1] == 1) && (p[y] == s[x])) ||
+                                ((x == 0) && (possiblePath[prevRowIdx][x] == 1) && (p[y] == s[x])))
+                            {
+                                // '?' matches any char, no need to check char
+                                possiblePath[currentRowIdx][x] = 1;
+                                possiblePathFound++;
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            if (possiblePathFound == 0){
+                // no possible path found
+                result = false;
+                goto finish;
+            }
+        }
+
+        result = (possiblePath[currentRowIdx][sSize - 1] == 1);
+    finish:
+
+        delete[] possiblePath[0];
+        delete[] possiblePath[1];
+        delete[] possiblePath;
+        return result;
     }
 };
 
