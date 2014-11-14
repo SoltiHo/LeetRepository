@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Permutations_II", "Permutations_II\Permutations_II.vcxproj", "{87B2E01A-1BF4-4F9A-80F7-2552B2AD93F6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoogleTest", "GoogleTest\GoogleTest.vcxproj", "{0971F817-FD52-4C73-A3A2-168E9A789A66}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Permutations_II_ULT", "Permutations_II_ULT\Permutations_II_ULT.vcxproj", "{47A362F7-468F-46F3-A356-92884DB1C458}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87B2E01A-1BF4-4F9A-80F7-2552B2AD93F6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{87B2E01A-1BF4-4F9A-80F7-2552B2AD93F6}.Debug|Win32.Build.0 = Debug|Win32
+		{87B2E01A-1BF4-4F9A-80F7-2552B2AD93F6}.Release|Win32.ActiveCfg = Release|Win32
+		{87B2E01A-1BF4-4F9A-80F7-2552B2AD93F6}.Release|Win32.Build.0 = Release|Win32
+		{0971F817-FD52-4C73-A3A2-168E9A789A66}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0971F817-FD52-4C73-A3A2-168E9A789A66}.Debug|Win32.Build.0 = Debug|Win32
+		{0971F817-FD52-4C73-A3A2-168E9A789A66}.Release|Win32.ActiveCfg = Release|Win32
+		{0971F817-FD52-4C73-A3A2-168E9A789A66}.Release|Win32.Build.0 = Release|Win32
+		{47A362F7-468F-46F3-A356-92884DB1C458}.Debug|Win32.ActiveCfg = Debug|Win32
+		{47A362F7-468F-46F3-A356-92884DB1C458}.Debug|Win32.Build.0 = Debug|Win32
+		{47A362F7-468F-46F3-A356-92884DB1C458}.Release|Win32.ActiveCfg = Release|Win32
+		{47A362F7-468F-46F3-A356-92884DB1C458}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
