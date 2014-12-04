@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BT_Inorder_Postorder_Traversal", "BT_Inorder_Postorder_Traversal\BT_Inorder_Postorder_Traversal.vcxproj", "{A91BEF51-473A-4A4E-83BD-603CB5D2B9EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A91BEF51-473A-4A4E-83BD-603CB5D2B9EC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A91BEF51-473A-4A4E-83BD-603CB5D2B9EC}.Debug|Win32.Build.0 = Debug|Win32
+		{A91BEF51-473A-4A4E-83BD-603CB5D2B9EC}.Release|Win32.ActiveCfg = Release|Win32
+		{A91BEF51-473A-4A4E-83BD-603CB5D2B9EC}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

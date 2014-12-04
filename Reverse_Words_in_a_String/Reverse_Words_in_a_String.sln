@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Reverse_Words_in_a_String", "Reverse_Words_in_a_String\Reverse_Words_in_a_String.vcxproj", "{07B68C62-DDBB-414B-993A-004113FB5D49}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoogleTest", "GoogleTest\GoogleTest.vcxproj", "{CA16D2B6-43F5-4954-A1AE-9C31FD00D584}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Reverse_Words_in_a_String_ULT", "Reverse_Words_in_a_String_ULT\Reverse_Words_in_a_String_ULT.vcxproj", "{AE606415-6530-4954-9182-82740D1202F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07B68C62-DDBB-414B-993A-004113FB5D49}.Debug|Win32.ActiveCfg = Debug|Win32
+		{07B68C62-DDBB-414B-993A-004113FB5D49}.Debug|Win32.Build.0 = Debug|Win32
+		{07B68C62-DDBB-414B-993A-004113FB5D49}.Release|Win32.ActiveCfg = Release|Win32
+		{07B68C62-DDBB-414B-993A-004113FB5D49}.Release|Win32.Build.0 = Release|Win32
+		{CA16D2B6-43F5-4954-A1AE-9C31FD00D584}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CA16D2B6-43F5-4954-A1AE-9C31FD00D584}.Debug|Win32.Build.0 = Debug|Win32
+		{CA16D2B6-43F5-4954-A1AE-9C31FD00D584}.Release|Win32.ActiveCfg = Release|Win32
+		{CA16D2B6-43F5-4954-A1AE-9C31FD00D584}.Release|Win32.Build.0 = Release|Win32
+		{AE606415-6530-4954-9182-82740D1202F0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AE606415-6530-4954-9182-82740D1202F0}.Debug|Win32.Build.0 = Debug|Win32
+		{AE606415-6530-4954-9182-82740D1202F0}.Release|Win32.ActiveCfg = Release|Win32
+		{AE606415-6530-4954-9182-82740D1202F0}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

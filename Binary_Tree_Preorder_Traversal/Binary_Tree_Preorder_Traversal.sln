@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Binary_Tree_Preorder_Traversal", "Binary_Tree_Preorder_Traversal\Binary_Tree_Preorder_Traversal.vcxproj", "{D760C703-7659-42DC-85B5-320E7F199A63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D760C703-7659-42DC-85B5-320E7F199A63}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D760C703-7659-42DC-85B5-320E7F199A63}.Debug|Win32.Build.0 = Debug|Win32
+		{D760C703-7659-42DC-85B5-320E7F199A63}.Release|Win32.ActiveCfg = Release|Win32
+		{D760C703-7659-42DC-85B5-320E7F199A63}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
