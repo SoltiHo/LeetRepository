@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>\\CHO14-DESK1\_Vault\LeetRepository\Candy\Candy;\\CHO14-DESK1\_Vault\gtest-1.7.0\include;\\CHO14-DESK1\_Vault\gtest-1.7.0;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Leet\LeetRepository\Candy\Candy;C:\Users\cho14\Desktop\UnitTest\gtest-1.7.0;C:\Users\cho14\Desktop\UnitTest\gtest-1.7.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
