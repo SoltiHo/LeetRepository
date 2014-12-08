@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Restore_IP_Addresses", "Restore_IP_Addresses\Restore_IP_Addresses.vcxproj", "{3554F5EE-9594-4801-B8BC-50654C8F74CE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoogleTest", "GoogleTest\GoogleTest.vcxproj", "{DA1DAD44-71DB-4581-9F8E-959085E0CB42}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Restore_IP_Addresses_ULT", "Restore_IP_Addresses_ULT\Restore_IP_Addresses_ULT.vcxproj", "{5DDB6A8A-DDB5-4C66-B0B3-E4CB9D0FA3D2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3554F5EE-9594-4801-B8BC-50654C8F74CE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3554F5EE-9594-4801-B8BC-50654C8F74CE}.Debug|Win32.Build.0 = Debug|Win32
+		{3554F5EE-9594-4801-B8BC-50654C8F74CE}.Release|Win32.ActiveCfg = Release|Win32
+		{3554F5EE-9594-4801-B8BC-50654C8F74CE}.Release|Win32.Build.0 = Release|Win32
+		{DA1DAD44-71DB-4581-9F8E-959085E0CB42}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DA1DAD44-71DB-4581-9F8E-959085E0CB42}.Debug|Win32.Build.0 = Debug|Win32
+		{DA1DAD44-71DB-4581-9F8E-959085E0CB42}.Release|Win32.ActiveCfg = Release|Win32
+		{DA1DAD44-71DB-4581-9F8E-959085E0CB42}.Release|Win32.Build.0 = Release|Win32
+		{5DDB6A8A-DDB5-4C66-B0B3-E4CB9D0FA3D2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5DDB6A8A-DDB5-4C66-B0B3-E4CB9D0FA3D2}.Debug|Win32.Build.0 = Debug|Win32
+		{5DDB6A8A-DDB5-4C66-B0B3-E4CB9D0FA3D2}.Release|Win32.ActiveCfg = Release|Win32
+		{5DDB6A8A-DDB5-4C66-B0B3-E4CB9D0FA3D2}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
