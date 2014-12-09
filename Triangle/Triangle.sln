@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Triangle", "Triangle\Triangle.vcxproj", "{AB1D2E42-72EA-4AA0-B091-B7B929CDB7CD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoogleTest", "GoogleTest\GoogleTest.vcxproj", "{5EB62518-1E60-47EC-91F6-8E3ADCBAC24A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Triangle_ULT", "Triangle_ULT\Triangle_ULT.vcxproj", "{BB2E7455-7BA0-49BE-959B-6C2497223C95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB1D2E42-72EA-4AA0-B091-B7B929CDB7CD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AB1D2E42-72EA-4AA0-B091-B7B929CDB7CD}.Debug|Win32.Build.0 = Debug|Win32
+		{AB1D2E42-72EA-4AA0-B091-B7B929CDB7CD}.Release|Win32.ActiveCfg = Release|Win32
+		{AB1D2E42-72EA-4AA0-B091-B7B929CDB7CD}.Release|Win32.Build.0 = Release|Win32
+		{5EB62518-1E60-47EC-91F6-8E3ADCBAC24A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5EB62518-1E60-47EC-91F6-8E3ADCBAC24A}.Debug|Win32.Build.0 = Debug|Win32
+		{5EB62518-1E60-47EC-91F6-8E3ADCBAC24A}.Release|Win32.ActiveCfg = Release|Win32
+		{5EB62518-1E60-47EC-91F6-8E3ADCBAC24A}.Release|Win32.Build.0 = Release|Win32
+		{BB2E7455-7BA0-49BE-959B-6C2497223C95}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BB2E7455-7BA0-49BE-959B-6C2497223C95}.Debug|Win32.Build.0 = Debug|Win32
+		{BB2E7455-7BA0-49BE-959B-6C2497223C95}.Release|Win32.ActiveCfg = Release|Win32
+		{BB2E7455-7BA0-49BE-959B-6C2497223C95}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
