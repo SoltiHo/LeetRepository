@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Subsets", "Subsets\Subsets.vcxproj", "{E8CF781A-2824-40F4-BAB5-09CDC5AB09A9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoogleTest", "GoogleTest\GoogleTest.vcxproj", "{210B508E-000E-40AF-8F25-A297E3F25DDC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Subsets_ULT", "Subsets_ULT\Subsets_ULT.vcxproj", "{DA051443-577C-4619-B191-5A9D3CEFC684}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8CF781A-2824-40F4-BAB5-09CDC5AB09A9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E8CF781A-2824-40F4-BAB5-09CDC5AB09A9}.Debug|Win32.Build.0 = Debug|Win32
+		{E8CF781A-2824-40F4-BAB5-09CDC5AB09A9}.Release|Win32.ActiveCfg = Release|Win32
+		{E8CF781A-2824-40F4-BAB5-09CDC5AB09A9}.Release|Win32.Build.0 = Release|Win32
+		{210B508E-000E-40AF-8F25-A297E3F25DDC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{210B508E-000E-40AF-8F25-A297E3F25DDC}.Debug|Win32.Build.0 = Debug|Win32
+		{210B508E-000E-40AF-8F25-A297E3F25DDC}.Release|Win32.ActiveCfg = Release|Win32
+		{210B508E-000E-40AF-8F25-A297E3F25DDC}.Release|Win32.Build.0 = Release|Win32
+		{DA051443-577C-4619-B191-5A9D3CEFC684}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DA051443-577C-4619-B191-5A9D3CEFC684}.Debug|Win32.Build.0 = Debug|Win32
+		{DA051443-577C-4619-B191-5A9D3CEFC684}.Release|Win32.ActiveCfg = Release|Win32
+		{DA051443-577C-4619-B191-5A9D3CEFC684}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
