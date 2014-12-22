@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\_Vault\LeetRepository\N_Queens\N_Queens;\\cho14-desk1\_Vault\gtest-1.7.0;\\cho14-desk1\_Vault\gtest-1.7.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Leet\LeetRepository\N_Queens\N_Queens;C:\Users\cho14\Desktop\UnitTest\gtest-1.7.0;C:\Users\cho14\Desktop\UnitTest\gtest-1.7.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -81,6 +81,9 @@
   <ItemGroup>
     <ProjectReference Include="..\GoogleTest\GoogleTest.vcxproj">
       <Project>{d0290603-312e-47e5-9c3b-c15b2a3554fe}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\N_Queens\N_Queens.vcxproj">
+      <Project>{69ac2109-5eeb-48f2-b200-305c3d8e9458}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

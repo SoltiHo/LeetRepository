@@ -1,7 +1,80 @@
 // Problem: https://oj.leetcode.com/problems/n-queens/
 #include <vector>
 #include <string>
+#include <cmath>
 #include <algorithm>
+
+using namespace std;
+
+class Solution_Backtracking {
+public:
+    vector<vector<string>> solveNQueens(int n) {
+        vector<vector<string>> output;
+        if (n == 1){
+            output.push_back({ "Q" });
+        }
+        else if (n >= 4){
+            string temp(n, '.');
+            vector<string> buffer(n, temp);
+            for (int i = 0; i < n; ++i){
+                buffer[0][i] = 'Q';
+                backTracking(output, buffer, 0, i, n);
+                buffer[0][i] = '.';
+            }
+        }
+        return output;
+    }
+
+
+    void backTracking(vector<vector<string>>& output, vector<string>& buffer, const int rowIdx, const int colIdx, int N){
+        if (reject(buffer, rowIdx, colIdx, N)){
+            return;
+        }
+        if (accept(output, buffer, rowIdx, N)){
+            return;
+        }
+
+        for (int i = 0; i < N; ++i){
+            if (i != colIdx){
+                buffer[rowIdx + 1][i] = 'Q';
+                backTracking(output, buffer, rowIdx + 1, i, N);
+                buffer[rowIdx + 1][i] = '.';
+            }
+        }
+    }
+
+    bool accept(vector<vector<string>>& output, vector<string>& buffer, const int rowIdx, int N){
+        if (rowIdx == N - 1){
+            output.push_back(buffer);
+            return true;
+        }
+        return false;
+    }
+
+    bool reject(vector<string>& buffer, const int rowIdx, const int colIdx, int N){
+        for (int i = 0; i < rowIdx; ++i){
+            if (buffer[i][colIdx] == 'Q'){
+                return true;
+            }
+        }
+
+        int colDelta = 0;
+        for (int i = 0; i < rowIdx; ++i){
+            colDelta = abs(rowIdx - i);
+            if ((colIdx - colDelta >= 0) && (buffer[i][colIdx - colDelta] == 'Q')){
+                return true;
+            }
+            if ((colIdx + colDelta < N) && (buffer[i][colIdx + colDelta] == 'Q')){
+                return true;
+            }
+        }
+
+        return false;
+    }
+};
+
+
+
 
 void mirrow(std::vector<std::vector<std::string>>& solSet){
     std::vector<std::vector<std::string>>::iterator solSetIt = solSet.begin();

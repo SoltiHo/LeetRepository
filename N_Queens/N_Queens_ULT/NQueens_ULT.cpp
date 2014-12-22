@@ -1,9 +1,15 @@
 #include "gtest/gtest.h"  // access test macro
 #include "NQueens.h"
 
-TEST(NQueens, Basic_5Queens){
-    Solution sol;
+
+TEST(Backtracking, 5Queens){
+    Solution_Backtracking sol;
     sol.solveNQueens(5);
+}
+
+TEST(Backtracking, 4Queens){
+    Solution_Backtracking sol;
+    sol.solveNQueens(4);
 }
 
 //TEST(NQueens, Basic_6Queens){
