@@ -6,6 +6,30 @@
 #include <unordered_map>
 using namespace std;
 
+
+class Solution_LogicTable {
+public:
+    int singleNumber(int A[], int n) {
+        int once = 0;
+        int twice = 0;
+        int lastOnce = 0;
+        int lastTwice = 0;
+        for (int i = 0; i < n; ++i){
+            lastOnce = once;
+            lastTwice = twice;
+            once = (A[i] & (~lastOnce) & (~lastTwice)) | (~A[i] & lastOnce);
+            twice = (A[i] & lastOnce) | (~A[i] & lastTwice);
+        }
+
+        if (n % 3 == 2){
+            return twice;
+        }
+        else{
+            return once;
+        }
+    }
+};
+
 class Solution_HashTable {
 public:
     int singleNumber(int A[], int n) {
