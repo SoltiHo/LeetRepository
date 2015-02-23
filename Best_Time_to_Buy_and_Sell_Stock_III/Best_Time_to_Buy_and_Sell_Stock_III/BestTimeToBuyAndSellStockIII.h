@@ -10,6 +10,58 @@
 using namespace std;
 
 
+
+class Solution_LatestTrial_geniusOnForum {
+public:
+    int maxProfit(vector<int> &prices) {
+        int bestAfterBuyingFirstBalance = INT_MIN;
+        int bestAfterBuyingSecondBalance = INT_MIN;
+        int bestAfterSellingFirstBalance = 0;  // init to 0 because if it's below 0, then we don't do transactions
+        int bestAfterSellingSecondBalance = 0;
+
+        for (auto& i : prices){
+            bestAfterSellingSecondBalance = max(bestAfterSellingSecondBalance, bestAfterBuyingSecondBalance + i);
+            bestAfterBuyingSecondBalance = max(bestAfterBuyingSecondBalance, bestAfterSellingFirstBalance - i);
+            bestAfterSellingFirstBalance = max(bestAfterSellingFirstBalance, bestAfterBuyingFirstBalance + i);
+            bestAfterBuyingFirstBalance = max(bestAfterBuyingFirstBalance, 0 - i);
+        }
+        return bestAfterSellingSecondBalance;  // return 2nd is enough because if the 2nd transaction doesn't help, it won't survive the max operations
+    }
+};
+
+class Solution_LatestTrial {
+public:
+    // this is wrong algorithm
+    int maxProfit(vector<int> &prices) {
+        int output = 0;
+        int bestSingleTransactionProfitBefore = 0;
+        int minPriceAfterBestSingleTransaction = INT_MAX;
+        int minPriceEver = INT_MAX;
+        for (auto& p : prices){
+            // evaluate curr p to be the sell of the 2nd transaction
+            if ((p > minPriceAfterBestSingleTransaction) && (bestSingleTransactionProfitBefore != 0)){
+                // meaning 2nd transaction possible
+                output = max(output, p - minPriceAfterBestSingleTransaction + bestSingleTransactionProfitBefore);
+            }
+            // evaluate curr p to be the sell of the only transaction
+            if ((p > minPriceEver) && (p - minPriceEver > bestSingleTransactionProfitBefore)){
+                minPriceAfterBestSingleTransaction = p;
+                bestSingleTransactionProfitBefore = p - minPriceEver;
+                output = max(output, bestSingleTransactionProfitBefore);
+            }
+
+            // update mins
+            minPriceEver = min(minPriceEver, p);
+            minPriceAfterBestSingleTransaction = min(minPriceAfterBestSingleTransaction, p);
+        }
+
+
+        return output;
+    }
+};
+
+
+
 struct Upturn {
     int price;
     int bestProfitBeofre;
@@ -93,7 +145,7 @@ public:
             if (prices[i] < lowestPrice) {
                 lowestPrice = prices[i];
             }
-            
+
         }
         return bestTotalProfit;
     }

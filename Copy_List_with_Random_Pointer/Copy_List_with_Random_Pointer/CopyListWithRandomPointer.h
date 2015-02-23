@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
+#include <unordered_map>
 using namespace std;
 
 // Definition for singly-linked list with a random pointer.
@@ -12,6 +13,85 @@ struct RandomListNode {
     RandomListNode *next, *random;
     RandomListNode(int x) : label(x), next(NULL), random(NULL) {}
 };
+
+class Solution_LatestTrial_Fast {
+public:
+    RandomListNode *copyRandomList(RandomListNode *head) {
+        RandomListNode* output = NULL;
+        if (head){
+            // clone the nodes and insert in between the old nodes
+            RandomListNode* currNode = head;
+            RandomListNode* temp = NULL;
+            while (currNode){
+                temp = currNode->next;
+                currNode->next = new RandomListNode(currNode->label);
+                currNode->next->next = temp;
+                currNode = temp;
+            }
+
+            // set the random pointer
+            currNode = head;
+            while (currNode){
+                if (currNode->random){
+                    currNode->next->random = currNode->random->next;
+                }
+                currNode = currNode->next->next;
+            }
+
+            currNode = head;
+            temp = output = head->next;
+            RandomListNode* nextOldNode = NULL;
+            while (currNode->next->next){
+                nextOldNode = currNode->next->next;
+                temp->next = currNode->next->next->next;
+                currNode->next = nextOldNode;
+                currNode = nextOldNode;
+                temp = currNode->next;
+            }
+            currNode->next = NULL;
+        }
+        
+        return output;
+    }
+};
+
+class Solution_LatestTrial_Naive {
+public:
+    RandomListNode *copyRandomList(RandomListNode *head) {
+        RandomListNode* output = NULL;
+        if (head){
+            unordered_map<RandomListNode*, RandomListNode*> map;
+            // copy the root
+            output = new RandomListNode(head->label);
+            map[head] = output;
+
+            // copy the rest of the list
+            RandomListNode* currNode = head;
+            RandomListNode* newListTail = output;
+            while (currNode->next){
+                newListTail->next = new RandomListNode(currNode->next->label);
+                currNode = currNode->next;
+                newListTail = newListTail->next;
+                map[currNode] = newListTail;
+            }
+
+            // set the random pointers
+            currNode = head;
+            newListTail = output;
+            while (currNode){
+                if (currNode->random){
+                    newListTail->random = map[currNode->random];
+                }
+                currNode = currNode->next;
+                newListTail = newListTail->next;
+            }
+
+        }
+
+        return output;
+    }
+};
+
 
 unsigned int HashTableSize = 65536;
 

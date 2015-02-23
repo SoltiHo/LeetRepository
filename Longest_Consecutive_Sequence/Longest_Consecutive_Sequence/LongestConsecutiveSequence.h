@@ -188,3 +188,33 @@ public:
         return longest;
     }
 };
+
+
+class Solution_LatestTrial {
+public:
+    int longestConsecutive(vector<int> &num) {
+        unordered_map<int, int> map;
+        int minNum;
+        int maxNum;
+        int longest = 0;
+        for (auto& n : num){
+            if (map.count(n) == 0){
+                minNum = maxNum = n;
+                map[n] = n;
+                if (map.count(n - 1) != 0){
+                    minNum = map[n - 1];
+                }
+
+                if (map.count(n + 1) != 0){
+                    maxNum = map[n + 1];
+                }
+
+                map[minNum] = maxNum;
+                map[maxNum] = minNum;
+                longest = max(longest, maxNum - minNum + 1);
+            }        
+        }
+
+        return longest;
+    }
+};

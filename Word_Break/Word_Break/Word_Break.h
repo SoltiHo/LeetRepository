@@ -10,6 +10,12 @@
 #include <vector>
 
 using namespace std;
+
+class Solution_DP {
+    bool wordBreak(string s, unordered_set<string> &dict) {
+    }
+};
+
 class Solution_DP {
     bool wordBreak(string s, unordered_set<string> &dict) {
         const int sSize = s.size();

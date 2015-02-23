@@ -15,6 +15,64 @@ struct TreeNode {
 };
 
 
+
+
+
+
+
+class Solution_latestTrial {
+public:
+    int maxPathSum(TreeNode *root) {
+        int output = 0;
+        if (root){
+            output = INT_MIN;
+            bestSum(root, output);
+        }
+        return output;
+    }
+
+    int bestSum(TreeNode* root, int& maxSum){
+        int leftBestSum = INT_MIN;
+        int rightBestSum = INT_MIN;
+        if (root->left){
+            leftBestSum = bestSum(root->left, maxSum);
+        }
+        if (root->right){
+            rightBestSum = bestSum(root->right, maxSum);
+        }
+
+        // present a maxSum candidate
+        int bestSum = root->val;
+        if (rightBestSum > 0){
+            bestSum += rightBestSum;
+        }
+        if (leftBestSum > 0){
+            bestSum += leftBestSum;
+        }
+        maxSum = max(maxSum, bestSum);
+
+        // return the best one direction sum including current node
+        bestSum = root->val;
+        int largerChildSum = max(leftBestSum, rightBestSum);
+        if  (largerChildSum> 0){
+            bestSum += largerChildSum;
+        }
+
+        return bestSum;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
 int maxPathValue = INT_MIN;
 
 int reportMaxPathToParent(TreeNode* child){

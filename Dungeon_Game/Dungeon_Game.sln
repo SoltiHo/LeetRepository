@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dungeon_Game", "Dungeon_Game\Dungeon_Game.vcxproj", "{3C0BAD51-4156-40F2-BC11-D3BDE85559A0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoogleTest", "GoogleTest\GoogleTest.vcxproj", "{F33C992F-ED0E-4CA3-8507-C66BA99C0BF1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dungeon_Game_ULT", "Dungeon_Game_ULT\Dungeon_Game_ULT.vcxproj", "{3890915A-45F9-4774-971F-818E49D43137}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C0BAD51-4156-40F2-BC11-D3BDE85559A0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3C0BAD51-4156-40F2-BC11-D3BDE85559A0}.Debug|Win32.Build.0 = Debug|Win32
+		{3C0BAD51-4156-40F2-BC11-D3BDE85559A0}.Release|Win32.ActiveCfg = Release|Win32
+		{3C0BAD51-4156-40F2-BC11-D3BDE85559A0}.Release|Win32.Build.0 = Release|Win32
+		{F33C992F-ED0E-4CA3-8507-C66BA99C0BF1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F33C992F-ED0E-4CA3-8507-C66BA99C0BF1}.Debug|Win32.Build.0 = Debug|Win32
+		{F33C992F-ED0E-4CA3-8507-C66BA99C0BF1}.Release|Win32.ActiveCfg = Release|Win32
+		{F33C992F-ED0E-4CA3-8507-C66BA99C0BF1}.Release|Win32.Build.0 = Release|Win32
+		{3890915A-45F9-4774-971F-818E49D43137}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3890915A-45F9-4774-971F-818E49D43137}.Debug|Win32.Build.0 = Debug|Win32
+		{3890915A-45F9-4774-971F-818E49D43137}.Release|Win32.ActiveCfg = Release|Win32
+		{3890915A-45F9-4774-971F-818E49D43137}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -12,7 +12,75 @@
 #include <string>
 #include <algorithm>
 #include <iostream>
+#include <vector>
 using namespace std;
+
+
+
+class Solution_LatestTrial_DP {
+public:
+    int numDistinct(string S, string T) {
+        const int SSize = S.size();
+        const int TSize = T.size();
+        int output = 0;
+
+        if ((SSize > 0) && (TSize > 0) && (SSize >= TSize)){
+            vector<int> buffer(SSize + 1, 0);
+            int currBeforeUpdate = 0;
+            int PrevBeforeUpdate = 0;
+            for (int Sidx = 0; Sidx < SSize; ++Sidx){
+                if (S[Sidx] == T[0]){
+                    buffer[Sidx + 1] += 1;
+                }
+                buffer[Sidx + 1] += buffer[Sidx];
+
+            }
+            for (int Tidx = 1; Tidx < TSize; ++Tidx){
+                PrevBeforeUpdate = buffer[Tidx];
+                for (int Sidx = Tidx; Sidx < SSize; ++Sidx){
+                    currBeforeUpdate = buffer[Sidx + 1];
+                    buffer[Sidx + 1] = 0;
+                    if (S[Sidx] == T[Tidx]){
+                        buffer[Sidx + 1] += PrevBeforeUpdate;
+                    }
+                    buffer[Sidx + 1] += buffer[Sidx];
+                    PrevBeforeUpdate = currBeforeUpdate;
+                }
+            }
+
+            output = buffer[SSize];
+        }
+        return output;
+    }
+};
+
+class Solution_LatestTrial_Naive {
+public:
+    int numDistinct(string S, string T) {
+        int output = 0;
+        progress(S, T, 0, 0, output);
+        return output;
+    }
+
+    void progress(string& S, string& T, const int Sidx, const int Tidx, int& success){
+        if ((Sidx < S.size()) && (Tidx < T.size())){
+            if (S[Sidx] == T[Tidx]){
+                // try match
+                if (S.size() - (Sidx + 1) >= T.size() - (Tidx + 1)){
+                    progress(S, T, Sidx + 1, Tidx + 1, success);
+                }
+            }
+            // try not match
+            if (S.size() - (Sidx + 1) >= T.size() - Tidx){
+                progress(S, T, Sidx + 1, Tidx, success);
+            }
+        }
+        else if ((Sidx == S.size()) && (Tidx == T.size())){
+            success++;
+        }
+    }
+};
+
 
 void printArray(int* array, int Xsize, int Ysize){
     for (int y = 0; y < Ysize; ++y){
@@ -102,7 +170,7 @@ public:
 
                     possibleSubstringCountArray[y*Ssize + x] = countFromMovingBottomRight + countFromMovingRight;
                 }
-                
+
 
             } // end for x looping
 

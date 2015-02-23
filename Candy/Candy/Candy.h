@@ -10,6 +10,30 @@
 #include <iostream>
 using namespace std;
 
+class Solution_Greedy_LatestTrial {
+public:
+    int candy(vector<int> &ratings) {
+        const int ratingCount = ratings.size();
+        vector<int> candyAssignment(ratingCount, 1);
+        for (int i = 1; i < ratingCount; ++i){
+            if (ratings[i] > ratings[i - 1]){
+                candyAssignment[i] = candyAssignment[i - 1] + 1;
+            }
+        }
+        for (int i = ratingCount - 1; i > 0; --i){
+            if (ratings[i] < ratings[i - 1]){
+                candyAssignment[i - 1] = max(candyAssignment[i] + 1, candyAssignment[i - 1]);
+            }
+        }
+        
+        int output = 0;
+        for (auto& i : candyAssignment){
+            output += i;
+        }
+        return output;
+    }
+};
+
 class Solution_Greedy {
 public:
     int candy(vector<int> &ratings) {
