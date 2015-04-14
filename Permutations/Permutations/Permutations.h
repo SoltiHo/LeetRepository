@@ -9,6 +9,31 @@
 #include <algorithm>
 using namespace std;
 
+class Solution_LatestTrial {
+    // assume no duplication
+public:
+    vector<vector<int>> permute(vector<int> &num) {
+        vector<vector<int>> output;
+        const int inputSize = num.size();
+        swapElements(num, inputSize, 0, output);
+        return output;
+    }
+
+    void swapElements(vector<int>& num, const int numSize, const int headIdx, vector<vector<int>>& output){
+        if (headIdx == numSize - 1){
+            output.push_back(num);
+        }
+        else{
+            for (int i = headIdx; i < numSize; ++i){
+                swap(num[headIdx], num[i]);
+                swapElements(num, numSize, headIdx + 1, output);
+                swap(num[headIdx], num[i]);
+            }
+        }
+    }
+
+};
+
 class Solution {
 public:
     vector<vector<int>> permute(vector<int> &num) {

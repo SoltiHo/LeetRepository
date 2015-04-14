@@ -7,8 +7,38 @@
 #include <vector>
 #include <algorithm>
 #include <unordered_map>
+#include <unordered_set>
 using namespace std;
 
+class Solution_LatestTrial {
+public:
+    vector<vector<int>> permuteUnique(vector<int> &num) {
+        vector<vector<int>> output;
+        const int numSize = num.size();
+        if (numSize > 0){
+            permu(num, numSize, 0, output);
+        }
+        return output;
+    }
+
+    void permu(vector<int>& num, const int numSize, const int currIdx, vector<vector<int>>& output){
+        if (currIdx == numSize - 1){
+            output.push_back(num);
+        }
+        else{
+            unordered_set<int> swapped;
+            for (int i = currIdx; i < numSize; ++i){
+                if (swapped.count(num[i]) == 0){
+                    // first time
+                    swapped.insert(num[i]);
+                    swap(num[currIdx], num[i]);
+                    permu(num, numSize, currIdx + 1, output);
+                    swap(num[currIdx], num[i]);
+                }
+            }
+        }
+    }
+};
 class Solution {
 public:
 
@@ -36,7 +66,6 @@ public:
             }
         }
         else{
-            
             if (!atLeastOneNumDifferent){
                 // check if current set was tested before or not
                 unordered_map<int, ListNode*>::iterator it_set;
@@ -165,11 +194,9 @@ public:
                 it->second++;
             }
         }
-        
         for (vector<int>::iterator it_cand = candidates.begin(); it_cand != candidates.end(); it_cand++){
             countArray.push_back(histogram[*it_cand]);
         }
-        
         vector<int> buf;
         perm(candidates.data(), countArray.data(), buf, candidates.size(), numSize, 0);
 

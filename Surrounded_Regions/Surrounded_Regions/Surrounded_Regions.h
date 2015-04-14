@@ -16,57 +16,87 @@
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
+
 using namespace std;
 
-// take recursive way, if a 'O' can finally reaches boundary, then the 'O' along the path can stay, otherwise modify to 'X'
-// to avoid infinite loop, need to trace what's been on the path, so that no need to recursive on the 'O' already in path
 class Solution {
 public:
     void solve(vector<vector<char>> &board) {
-        unordered_map<int, unordered_set<int>> path;
-    }
+        this->boardHeight = board.size();
+        if (this->boardHeight){
+            this->boardWidth = board[0].size();
+            if (this->boardWidth){
+                for (int i = 0; i < boardWidth; ++i){
+                    if (board[0][i] == 'O'){
+                        board[0][i] = 'P';
+                        markSurviver(board, 0, i);
+                    }
+                }
 
-    bool checkO(vector<vector<char>>& board, unordered_map<int, unordered_set<int>>& path, const int x, const int y, const int from){
-        // from = 1, from left
-        // from = 2, from top
-        // from = 3, from right
-        // from = 4, from bottom
+                for (int i = 1; i < boardHeight; ++i){
+                    if (board[i][boardWidth - 1] == 'O'){
+                        board[i][boardWidth - 1] = 'P';
+                        markSurviver(board, i, boardWidth - 1);
+                    }
+                }
+
+                for (int i = 0; i < boardWidth - 1; ++i){
+                    if (board[boardHeight - 1][i] == 'O'){
+                        board[boardHeight - 1][i] = 'P';
+                        markSurviver(board, boardHeight - 1, i);
+                    }
+                }
+
+                for (int i = 1; i < boardHeight - 1; ++i){
+                    if (board[i][0] == 'O'){
+                        board[i][0] = 'P';
+                        markSurviver(board, i, 0);
+                    }
+                }
+
+
+                for (auto& r : board){
+                    for (auto& c : r){
+                        if (c == 'O'){
+                            c = 'X';
+                        }
+                        else if (c == 'P'){
+                            c = 'O';
+                        }
+                    }
+                }
+
+            }
+        }
         
-        bool result = false;
-        path[y].insert(x);
-        // try right
-        if ((board[y][x + 1] == 'O') && (from != 3) && (existOnThePath(path, x + 1, y) == false)){
-            // recurse on the right 'O'
-            if (checkO(board, path, x + 1, y, 1)){
-                result = true;
+    }
+
+    void markSurviver(vector<vector<char>> &board, int rowIdx, int colIdx){
+        vector<pair<int, int>> buffer;
+        pair<int, int> temp = { rowIdx, colIdx };
+        buffer.push_back(temp);
+        while (buffer.size() > 0){
+            temp = buffer[0];
+            buffer.erase(buffer.begin());
+            if ((temp.first - 1 >= 0) && (board[temp.first - 1][temp.second] == 'O')){
+                board[temp.first - 1][temp.second] = 'P';
+                buffer.push_back({temp.first - 1, temp.second});
             }
-        }
-        // try bottom
-        else if ((board[y + 1][x] == 'O') && (from != 4) && (existOnThePath(path, x, y + 1) == false)){
-            // recurse on the right 'O'
-            path[y].insert(x);
-            if (checkO(board, path, x + 1, y, 1)){
-                return true;
+            if ((temp.first + 1 <= boardHeight - 1) && (board[temp.first + 1][temp.second] == 'O')){
+                board[temp.first + 1][temp.second] = 'P';
+                buffer.push_back({ temp.first + 1, temp.second });
+            }
+            if ((temp.second - 1 >= 0) && (board[temp.first][temp.second - 1] == 'O')){
+                board[temp.first][temp.second - 1] = 'P';
+                buffer.push_back({ temp.first, temp.second - 1});
+            }
+            if ((temp.second + 1 <= boardWidth - 1) && (board[temp.first][temp.second + 1] == 'O')){
+                board[temp.first][temp.second + 1] = 'P';
+                buffer.push_back({ temp.first, temp.second + 1 });
             }
         }
     }
 
-    bool existOnThePath(unordered_map<int, unordered_set<int>>& path, const int x, const int y){
-        // y first and then x
-        if (path.count(y) == 0){
-            // not exist
-            return false;
-        }
-        else if (path[y].count(x) == 0){
-            // not exist
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
-
-    void pushToPath(unordered_map<int, unordered_set<int>>& path, const int x, const int y){
-        path[y].insert(x);
-    }
+    int boardWidth;
+    int boardHeight;
 };

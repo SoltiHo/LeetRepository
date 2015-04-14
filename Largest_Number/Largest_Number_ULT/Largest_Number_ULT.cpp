@@ -1,6 +1,24 @@
 #include "gtest/gtest.h"  // access test macro
 #include "Largest_Number.h"
 
+TEST(Leet, Fail01){
+    vector<int> input({ 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 });
+    Solution sol;
+    string output = sol.largestNumber(input);
+    string expected = "9876543210";
+    ASSERT_EQ(output, expected);
+}
+
+
+TEST(Leet, Fail02){
+    vector<int> input({ 20, 1 });
+    Solution sol;
+    string output = sol.largestNumber(input);
+    string expected = "201";
+    ASSERT_EQ(output, expected);
+}
+
+
 TEST(Leet, Fail05){
     vector<int> input({ 12, 121 });
     Solution sol;
@@ -17,13 +35,6 @@ TEST(Leet, Fail04){
     ASSERT_EQ(output, expected);
 }
 
-TEST(Leet, Fail01){
-    vector<int> input({ 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 });
-    Solution sol;
-    string output = sol.largestNumber(input);
-    string expected = "9876543210";
-    ASSERT_EQ(output, expected);
-}
 
 
 TEST(Leet, Fail03){
@@ -34,13 +45,7 @@ TEST(Leet, Fail03){
     ASSERT_EQ(output, expected);
 }
 
-TEST(Leet, Fail02){
-    vector<int> input({ 20, 1});
-    Solution sol;
-    string output = sol.largestNumber(input);
-    string expected = "201";
-    ASSERT_EQ(output, expected);
-}
+
 
 
 

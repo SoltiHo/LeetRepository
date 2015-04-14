@@ -14,6 +14,47 @@
 #include <string>
 using namespace std;
 
+
+class Solution_LatestTrial {
+    // if 0, can only combine with previous
+    // if 1~6, can be self or combine if possible
+    // 7~9, can only be self
+
+    // assume the question always give correct strings. i.e. always decode-able
+public:
+    int numDecodings(string s) {
+        int output = 0;
+        if (s.size() > 0){
+            int prevOneCount = 1; // seed
+            int prevTwoCount = 0;
+            int currCount = 0;
+            char lastNumber = '9';  // to block
+            for (auto& c : s){
+                if (c != '0'){
+                    // can be self-decoded
+                    currCount = prevOneCount;
+                }
+
+                if (((c <= '6') && (lastNumber == '2')) || // 20 ~ 26
+                    (lastNumber == '1')){  // 10 ~ 19
+                    // can combine with the prev char
+                    currCount += prevTwoCount;
+                }
+
+                // prepare for the next char
+                lastNumber = c;
+                prevTwoCount = prevOneCount;
+                prevOneCount = currCount;
+                currCount = 0;
+            }
+
+            output = prevOneCount;
+        }
+
+        return output;
+    }
+};
+
 class Solution {
 public:
     int numDecodings(string s) {

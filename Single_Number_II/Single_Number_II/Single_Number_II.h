@@ -6,6 +6,28 @@
 #include <unordered_map>
 using namespace std;
 
+class Solution_LatestTrial {
+public:
+    int singleNumber(int A[], int n) {
+        int AA = 0; // twice
+        int BB = 0; // once
+        int lastAA = 0;
+        int lastBB = 0;
+        for (int i = 0; i < n; ++i){
+            lastAA = AA;
+            lastBB = BB;
+            AA = (A[i] & lastBB) | (~A[i] & lastAA);
+            BB = (A[i] & ~lastAA & ~lastBB) | (~A[i] & lastBB);
+        }
+
+        if (n % 3 == 2){
+            return AA;
+        }
+        else{
+            return BB;
+        }
+    }
+};
 
 class Solution_LogicTable {
 public:

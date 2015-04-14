@@ -8,6 +8,31 @@
 using namespace std;
 
 
+class Solution_LatestTrial {
+public:
+    int lengthOfLongestSubstring(string s) {
+        const int sSize = s.size();
+        int hashtable[256];  // serve as hashtable
+        memset(hashtable, 0, sizeof(int)* 256);
+        int output = 0;
+        int startIdx = 0;
+        for (int endIdx = 0; endIdx < sSize; ++endIdx){
+            hashtable[s[endIdx]]++;
+            if (hashtable[s[endIdx]] == 2){
+                // repeated char
+                // present a candidate
+                output = max(output, endIdx - startIdx);
+
+                // reduce from the start point
+                while (hashtable[s[endIdx]] == 2){
+                    hashtable[s[startIdx++]]--;
+                }
+            }
+        }
+        output = max(output, sSize - startIdx);
+        return output;
+    }
+};
 class Solution_CharTable {
 public:
     int lengthOfLongestSubstring(string s) {

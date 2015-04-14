@@ -8,6 +8,33 @@
 #include <vector>
 using namespace std;
 
+
+class Solution_LatestTrial {
+public:
+    void rotate(vector<vector<int> > &matrix) {
+        const int arrayDimension = matrix.size();
+        for (int layer = 0; layer < (arrayDimension >> 1); ++layer){
+            for (int i = layer; i < arrayDimension - 1 - layer; ++i){
+                int X = i;
+                int Y = layer;
+                int lastX = Y;
+                int lastY = arrayDimension - 1 - X;
+                swap(matrix[X][Y], matrix[lastX][lastY]);
+                lastX = arrayDimension - 1 - Y;
+                lastY = X;
+                swap(X, lastX);
+                swap(Y, lastY);
+                swap(matrix[X][Y], matrix[lastX][lastY]);
+                lastX = arrayDimension - 1 - Y;
+                lastY = X;
+                swap(X, lastX);
+                swap(Y, lastY);
+                swap(matrix[X][Y], matrix[lastX][lastY]);
+            }
+        }
+    }
+};
+
 void swap_inplace(int Xa, int Ya, int Xb, int Yb, vector<vector<int> > &matrix){
     matrix[Xa][Ya] = matrix[Xa][Ya] ^ matrix[Xb][Yb];
     matrix[Xb][Yb] = matrix[Xa][Ya] ^ matrix[Xb][Yb];
