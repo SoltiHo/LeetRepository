@@ -26,6 +26,43 @@
 #include <algorithm>
 using namespace std;
 
+
+
+class SolutionLatestTrial {
+public:
+    int calculateMinimumHP(vector<vector<int> > &dungeon) {
+        const int rowCount = dungeon.size();
+        const int colCount = dungeon[0].size();
+        
+        // handle the last cell
+        dungeon[rowCount - 1][colCount - 1] = minHealthNeeded(dungeon[rowCount - 1][colCount - 1], 1);
+
+        // handle the last row
+        for (int colIdx = colCount - 2; colIdx >= 0; --colIdx){
+            dungeon[rowCount - 1][colIdx] = minHealthNeeded(dungeon[rowCount - 1][colIdx], dungeon[rowCount - 1][colIdx + 1]);
+        }
+
+        // handle the last col
+        for (int rowIdx = rowCount - 2; rowIdx >= 0; --rowIdx){
+            dungeon[rowIdx][colCount - 1] = minHealthNeeded(dungeon[rowIdx][colCount - 1], dungeon[rowIdx + 1][colCount - 1]);
+        }
+
+        // handle the rest
+        for (int rowIdx = rowCount - 2; rowIdx >= 0; --rowIdx){
+            for (int colIdx = colCount - 2; colIdx >= 0; --colIdx){
+                int exitCriteria = min(dungeon[rowIdx + 1][colIdx], dungeon[rowIdx][colIdx + 1]);
+                dungeon[rowIdx][colIdx] = minHealthNeeded(dungeon[rowIdx][colIdx], exitCriteria);
+            }
+        }
+
+        return dungeon[0][0];
+    }
+
+    inline int minHealthNeeded(int loading, int exitCondition){
+        return (exitCondition - loading > 0 ? exitCondition - loading : 1);
+    }
+};
+
 // for each cell (x, y), it could come from the top or the left.
 // want to pursuve the max min sum during the path
 // greedy on min seen so far is not enough because there might be big plus in future cells
