@@ -4,9 +4,11 @@
 // 
 // Note: The result may be very large, so you need to return a string instead of an integer.
 #include <string>
+#include <unordered_map>
 #include <vector>
 #include <algorithm>
 #include <sstream>
+#include <cmath>
 using namespace std;
 
 class SolutionWrong {
@@ -68,7 +70,7 @@ public:
             else{
                 output = "0";
             }
-            
+
         }
         return output;
     }
@@ -93,8 +95,53 @@ public:
 };
 
 
-
 class Solution {
+public:
+    string largestNumber(vector<int> &num) {
+        string output = countingSort(num, 0);
+        while (output.size() > 0 && output[0] == '0'){
+            output.erase(output.begin());
+        }
+        if (output.size() == 0){
+            output.push_back('0');
+        }
+        return output;
+    }
+
+    string countingSort(vector<int> n, int level){
+        if (n.size() == 1){
+            // convert the number to string
+            return to_string(n[0]);
+        }
+        else if (level > 10){
+            // the order of these doesn't matter
+            stringstream ss;
+            for (auto w : n){
+                ss << to_string(w);
+            }
+            return ss.str();
+        }
+        else if (n.size() == 0){
+            return "";
+        }
+
+        vector<vector<int>> buckets(10, vector<int>()); // for 0 ~ 9
+        for (auto i : n){
+            int numDigits = i == 0 ? 1 : (int)log10(i) + 1;
+            int digitIdx = level % numDigits;
+            int sortingKey = (i / (int)pow(10, numDigits - digitIdx - 1)) % 10;
+            buckets[9 - sortingKey].push_back(i); // put in reverse order, because 9 should come first
+        }
+
+        stringstream ss;
+        for (auto b : buckets){
+            ss << countingSort(b, level + 1);
+        }
+
+        return ss.str();
+    }
+};
+class Solution_Old {
 public:
     struct indirectNode{
         int key;
@@ -123,7 +170,7 @@ public:
 
             // radix sort the indirect nodes
             int exp = 1;
-            for(int i = 0; i < requiredKeyDigitCount; ++i){
+            for (int i = 0; i < requiredKeyDigitCount; ++i){
                 countingSort(sortee, size, exp);
                 exp *= 10;
             }
@@ -176,7 +223,7 @@ public:
         for (int i = 0; i < requiredKeyLength - oriDigitCount; ++i){
             output = output * 10 + (digits[i % oriDigitCount]);
         }
-        
+
         return output;
     }
 

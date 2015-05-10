@@ -22,6 +22,46 @@ struct TreeNode {
 };
 
 
+
+
+class Solution {
+public:
+    vector<TreeNode *> generateTrees(int n) {
+        vector<TreeNode*> output;
+        if (n == 0){
+            output.push_back(NULL);
+        }
+        else{
+            output = buildPossibleSubtrees(1, n);
+        }
+        return output;
+    }
+
+    vector<TreeNode*> buildPossibleSubtrees(int lowerBound, int upperBound){
+        // pick a root
+        vector<TreeNode*> output;
+        if (lowerBound <= upperBound){
+            for (int rootNumber = lowerBound; rootNumber <= upperBound; ++rootNumber){
+                vector<TreeNode*> leftSubtrees = buildPossibleSubtrees(lowerBound, rootNumber - 1);
+                vector<TreeNode*> rightSubtrees = buildPossibleSubtrees(rootNumber + 1, upperBound);
+                for (int leftSubtreeIdx = 0; leftSubtreeIdx < leftSubtrees.size(); ++leftSubtreeIdx){
+                    for (int rightSubtreeIdx = 0; rightSubtreeIdx < rightSubtrees.size(); ++rightSubtreeIdx){
+                        TreeNode* pNewSubtrees = new TreeNode(rootNumber);
+                        pNewSubtrees->left = leftSubtrees[leftSubtreeIdx];
+                        pNewSubtrees->right = rightSubtrees[rightSubtreeIdx];
+                        output.push_back(pNewSubtrees);
+                    }
+                }   
+            }
+        }
+        else{
+            output.push_back(NULL);
+        }
+        return output;
+    }
+};
+
+
 class Solution_DP {
 public:
     vector<TreeNode *> generateTrees(int n) {

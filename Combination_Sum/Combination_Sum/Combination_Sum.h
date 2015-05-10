@@ -15,6 +15,35 @@
 #include <algorithm>
 using namespace std;
 
+
+
+class Solution {
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> output;
+        if (candidates.size() > 0){
+            sort(candidates.begin(), candidates.end());
+            vector<int> buffer;
+            findCombination(candidates, target, 0, 0, buffer, output);
+        }
+        return output;
+    }
+
+    void findCombination(vector<int>& candidates, int target, int currSum, int currIdx, vector<int>& buffer, vector<vector<int>>& output){
+        if (currSum == target){
+            output.push_back(buffer);
+        }
+
+        while ((currIdx < candidates.size()) && (candidates[currIdx] <= target - currSum)){
+            buffer.push_back(candidates[currIdx]);
+            findCombination(candidates, target, currSum + candidates[currIdx], currIdx, buffer, output);
+            buffer.pop_back();
+            currIdx++;
+        }
+    }
+};
+
+
 class Solution {
 public:
     vector<vector<int> > combinationSum(vector<int> &candidates, int target) {

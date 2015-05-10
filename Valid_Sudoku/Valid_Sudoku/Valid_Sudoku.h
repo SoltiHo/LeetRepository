@@ -10,7 +10,67 @@
 
 #include <vector>
 using namespace std;
+class SolutionLatestTrial {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        vector<bool> existed(9, false);
+        // check rows
+        for (int rowIdx = 0; rowIdx < 9; rowIdx++){
+            existed.assign(9, false);
+            for (int colIdx = 0; colIdx < 9; colIdx++){
+                if (board[rowIdx][colIdx] != '.'){
+                    int currNumberIdx = board[rowIdx][colIdx] - '1'; // 1 map to idx 0
+                    if (existed[currNumberIdx]){
+                        // already exist
+                        return false;
+                    }
+                    else{
+                        existed[currNumberIdx] = true;
+                    }
+                }
+                
+            }
+        }
 
+        // check columns
+        for (int colIdx = 0; colIdx < 9; colIdx++){
+            existed.assign(9, false);
+            for (int rowIdx = 0; rowIdx < 9; rowIdx++){
+                if (board[rowIdx][colIdx] != '.'){
+                    int currNumberIdx = board[rowIdx][colIdx] - '1'; // 1 map to idx 0
+                    if (existed[currNumberIdx]){
+                        // already exist
+                        return false;
+                    }
+                    else{
+                        existed[currNumberIdx] = true;
+                    }
+                }
+
+            }
+        }
+
+        // check zooms
+        for (int zoomIdx = 0; zoomIdx < 9; zoomIdx++){
+            existed.assign(9, false);
+            for (int zoomElementIdx = 0; zoomElementIdx < 9; zoomElementIdx++){
+                int colIdx = (zoomIdx % 3) * 3 + (zoomElementIdx) % 3;  // 0, 3, 6 --> 0;  1, 4, 7 --> 1;  2, 5, 8 --> 2;
+                int rowIdx = (zoomIdx / 3) * 3 + (zoomElementIdx) / 3;  // 0, 1, 2 --> 0;  3, 4, 5 --> 1;  6, 7, 8 --> 2;
+                if (board[rowIdx][colIdx] != '.'){
+                    int currNumberIdx = board[rowIdx][colIdx] - '1'; // 1 map to idx 0
+                    if (existed[currNumberIdx]){
+                        // already exist
+                        return false;
+                    }
+                    else{
+                        existed[currNumberIdx] = true;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+};
 class Solution {
 public:
     bool isValidSudoku(vector<vector<char> > &board) {

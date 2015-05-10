@@ -26,25 +26,25 @@ class Solution {
 public:
     vector<int> inorderTraversal(TreeNode *root) {
         vector<int> output;
-        bool popped = false;
+        bool leftChildProcessed = false;
         if (root){
             stack<TreeNode*> nodeStack;
             TreeNode* pCurr = NULL;
             nodeStack.push(root);
             while (nodeStack.size() > 0){
                 pCurr = nodeStack.top();
-                if ((pCurr->left) && (!popped)){
+                if ((pCurr->left) && (!leftChildProcessed)){
                     nodeStack.push(pCurr->left);
-                    popped = false;
+                    leftChildProcessed = false;
                 }
                 else{
                     output.push_back(pCurr->val);
                     nodeStack.pop();
-                    popped = true;
+                    leftChildProcessed = true;
                     if (pCurr->right){
                         // got right but no left
                         nodeStack.push(pCurr->right);
-                        popped = false;
+                        leftChildProcessed = false;
                     }
                 }
             }

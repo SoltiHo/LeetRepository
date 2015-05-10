@@ -15,7 +15,35 @@
 
 
 #include <algorithm>
+#include <vector>
 using namespace std;
+
+class Solution {
+    // counting sort
+public:
+    void sortColors(int A[], int n) {
+        vector<int> buffer(3, 0);
+        for (int i = 0; i < n; ++i){
+            buffer[A[i]]++;
+        }
+
+        for (int i = 0; i < n; ++i){
+            if (buffer[0] > 0){
+                A[i] = 0;
+                buffer[0]--;
+            }
+            else if (buffer[1] > 0){
+                A[i] = 1;
+                buffer[1]--;
+            }
+            else { //if (buffer[2] > 0){
+                A[i] = 2;
+                buffer[2]--;
+            }
+        }
+
+    }
+};
 class Solution {
 public:
     void sortColors(int A[], int n) {

@@ -18,6 +18,41 @@ struct TreeNode {
     TreeNode *right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
+class Solution {
+public:
+    TreeNode *sortedListToBST(ListNode *head) {
+        int totalNodeCount = 0;
+        ListNode* pCurr = head;
+        while (pCurr){
+            totalNodeCount++;
+            pCurr = pCurr->next;
+        }
+
+        if (totalNodeCount == 0){
+            return NULL;
+        }
+
+        return constructTree(&head, 1, totalNodeCount);
+
+    }
+
+    TreeNode* constructTree(ListNode** ppListHead, int startIdx, int endIdx){
+        if (startIdx > endIdx){
+            return NULL;
+        }
+
+        const int currIdx = startIdx + ((endIdx - startIdx) >> 1);
+        TreeNode* pLeftSubtree = constructTree(ppListHead,startIdx, currIdx - 1);
+        TreeNode* pCurrNode = new TreeNode((*ppListHead)->val);
+        (*ppListHead) = (*ppListHead)->next;
+        TreeNode* pRightSubtree = constructTree(ppListHead, currIdx + 1, endIdx);
+        
+        pCurrNode->left = pLeftSubtree;
+        pCurrNode->right = pRightSubtree;
+        
+        return pCurrNode;
+    }
+};
 
 class Solution {
 public:

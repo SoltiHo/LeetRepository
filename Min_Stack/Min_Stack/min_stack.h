@@ -8,6 +8,51 @@
 #include <algorithm>
 using namespace std;
 
+
+class MinStack {
+public:
+    void push(int x) {
+        this->_valueStack.push(x);
+        if (this->_minStack.size() > 0){
+            this->_minStack.push(min(this->_minStack.top(), x));
+        }
+        else{
+            this->_minStack.push(x);
+        }
+        
+    }
+
+    void pop() {
+        if (this->_valueStack.size() > 0){
+            this->_valueStack.pop();
+            this->_minStack.pop();
+        }
+    }
+
+    int top() {
+        if (this->_valueStack.size() > 0){
+            return this->_valueStack.top();
+        }
+        else{
+            return INT_MAX;
+        }
+    }
+
+    int getMin() {
+        if (this->_valueStack.size() > 0){
+            return this->_minStack.top();
+        }
+        else{
+            return INT_MAX;
+        }
+    }
+private:
+    stack<int> _valueStack;
+    stack<int> _minStack;
+};
+
+
+
 class MinStack {
 public:
     struct StackNode {

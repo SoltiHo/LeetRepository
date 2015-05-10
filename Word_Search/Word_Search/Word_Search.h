@@ -20,7 +20,75 @@
 #include <unordered_set>
 using namespace std;
 
+class SolutionLatest {
+public:
+    // assuming test case
+    bool exist(vector<vector<char>>& board, string word) {
+        const int rowCount = board.size();
+        const int colCount = board[0].size();
+        unordered_set<int> path;
+        for (int r = 0; r < rowCount; r++){
+            for (int c = 0; c < colCount; c++){
+                path.clear();
+                if (board[r][c] == word[0]){
+                    path.insert(hash(r, c));
+                    if (testWord(board, path, r, c, word, 0)){
+                        return true;
+                    }
+                    path.erase(hash(r, c));
+                }
+            }
+        }
+        return false;
+    }
 
+    bool testWord(vector<vector<char>>& board, unordered_set<int>& path, int rowIdx, int colIdx, string word, int charIdx){
+        // invariant: board[rowIdx][colIdx] = word[charIdx]
+        if (charIdx == word.size() - 1){
+            // the whole word matched
+            return true;
+        }
+
+        // test up neighbor
+        if ((rowIdx - 1 >= 0) && (board[rowIdx - 1][colIdx] == word[charIdx + 1]) && (path.count(hash(rowIdx - 1, colIdx)) == 0)){
+            path.insert(hash(rowIdx - 1, colIdx));
+            if (testWord(board, path, rowIdx - 1, colIdx, word, charIdx + 1)){
+                return true;
+            }
+            path.erase(hash(rowIdx - 1, colIdx));
+        }
+        // test down neighbor
+        if ((rowIdx + 1 < board.size()) && (board[rowIdx + 1][colIdx] == word[charIdx + 1]) && (path.count(hash(rowIdx + 1, colIdx)) == 0)){
+            path.insert(hash(rowIdx + 1, colIdx));
+            if (testWord(board, path, rowIdx + 1, colIdx, word, charIdx + 1)){
+                return true;
+            }
+            path.erase(hash(rowIdx + 1, colIdx));
+        }
+        // test left neighbor
+        if ((colIdx - 1 >= 0) && (board[rowIdx][colIdx - 1] == word[charIdx + 1]) && (path.count(hash(rowIdx, colIdx - 1)) == 0)){
+            path.insert(hash(rowIdx, colIdx - 1));
+            if (testWord(board, path, rowIdx, colIdx - 1, word, charIdx + 1)){
+                return true;
+            }
+            path.erase(hash(rowIdx, colIdx - 1));
+        }
+        // test right neighbor
+        if ((colIdx + 1 < board[0].size()) && (board[rowIdx][colIdx + 1] == word[charIdx + 1]) && (path.count(hash(rowIdx, colIdx + 1)) == 0)){
+            path.insert(hash(rowIdx, colIdx + 1));
+            if (testWord(board, path, rowIdx, colIdx + 1, word, charIdx + 1)){
+                return true;
+            }
+            path.erase(hash(rowIdx, colIdx + 1));
+        }
+        return false;
+    }
+
+    inline int hash(int x, int y){
+        int output = (x * 521) + y;
+        return (x * 521) + y;
+    }
+};
 
 //class Solution_FromForumNotMine {
 //public:
