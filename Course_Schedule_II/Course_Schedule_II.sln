@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Course_Schedule_II", "Course_Schedule_II\Course_Schedule_II.vcxproj", "{AF208765-D98E-48F8-A314-A77BD74118E6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Course_Schedule_II_ULT", "Course_Schedule_II_ULT\Course_Schedule_II_ULT.vcxproj", "{12954AD5-4592-4A6A-901C-24C6FA1A30B7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoogleTest", "GoogleTest\GoogleTest.vcxproj", "{D29CA387-57E7-4589-A421-6D9E823DAA9C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF208765-D98E-48F8-A314-A77BD74118E6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AF208765-D98E-48F8-A314-A77BD74118E6}.Debug|Win32.Build.0 = Debug|Win32
+		{AF208765-D98E-48F8-A314-A77BD74118E6}.Release|Win32.ActiveCfg = Release|Win32
+		{AF208765-D98E-48F8-A314-A77BD74118E6}.Release|Win32.Build.0 = Release|Win32
+		{12954AD5-4592-4A6A-901C-24C6FA1A30B7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{12954AD5-4592-4A6A-901C-24C6FA1A30B7}.Debug|Win32.Build.0 = Debug|Win32
+		{12954AD5-4592-4A6A-901C-24C6FA1A30B7}.Release|Win32.ActiveCfg = Release|Win32
+		{12954AD5-4592-4A6A-901C-24C6FA1A30B7}.Release|Win32.Build.0 = Release|Win32
+		{D29CA387-57E7-4589-A421-6D9E823DAA9C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D29CA387-57E7-4589-A421-6D9E823DAA9C}.Debug|Win32.Build.0 = Debug|Win32
+		{D29CA387-57E7-4589-A421-6D9E823DAA9C}.Release|Win32.ActiveCfg = Release|Win32
+		{D29CA387-57E7-4589-A421-6D9E823DAA9C}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

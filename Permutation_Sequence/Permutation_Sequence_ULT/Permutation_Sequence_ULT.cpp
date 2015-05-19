@@ -1,6 +1,12 @@
 #include "gtest/gtest.h"  // access test macro
 #include "Permutation_Sequence.h"
 
+TEST(Baisc, basic06){
+    Solution sol;
+    string expected("1423");
+    ASSERT_EQ(sol.getPermutation(4, 4), expected);
+}
+
 TEST(Baisc, basic05){
     Solution sol;
     string expected("3124");

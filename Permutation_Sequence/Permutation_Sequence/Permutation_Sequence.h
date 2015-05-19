@@ -18,6 +18,35 @@ using namespace std;
 
 class Solution {
 public:
+    Solution() : Table({ 1, 2, 6, 24, 120, 720, 5040, 40320, 362880 }){}
+    string getPermutation(int n, int k) {
+        string output;
+        for (int s = 1; s <= n; ++s){
+            output.push_back(s + '0');
+        }
+
+        int currScale = n - 1;
+        k = k % Table[currScale];  // larger than 9! simple restart
+        currScale--;
+        int MSDidx = 0;
+        while (currScale > 0){
+            char temp = output[MSDidx + k / Table[currScale]];
+            output.erase(MSDidx + k / Table[currScale], 1);
+            output.insert(MSDidx, &temp, 1);
+
+            k %= Table[currScale];
+            currScale--;
+            MSDidx++;
+        }
+        return output;
+    }
+
+    vector<int> Table;
+};
+
+
+class Solution_OLD {
+public:
     static const int FactorialTable[9];
     string getPermutation(int n, int k) {
         char* buffer = new char[n];
@@ -70,4 +99,4 @@ public:
     }
 };
 
-const int Solution::FactorialTable[9]{ 1, 2, 6, 24, 120, 720, 5040, 40320, 362880 };
+const int Solution_OLD::FactorialTable[9]{ 1, 2, 6, 24, 120, 720, 5040, 40320, 362880 };

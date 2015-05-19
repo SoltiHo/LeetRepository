@@ -30,18 +30,18 @@ using namespace std;
 
 class Solution {
 public:
-    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+    bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
         bool output = true;
         if (numCourses > 0){
             vector<unordered_set<int>> table(numCourses, unordered_set<int>());
 
             for (auto p : prerequisites){
-                if (DFS(p[0], p[1], table)){
+                if (DFS(p.first, p.second, table)){
                     // found
                     output = false;
                     break;
                 }
-                table[p[0]].insert(p[1]);
+                table[p.first].insert(p.second);
             }
         }
         return output;

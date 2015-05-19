@@ -1,13 +1,20 @@
 #include "gtest/gtest.h"  // access test macro
 #include "4Sum.h"
 
+TEST(Latest, Fail01){
+    vector<int> input({ 1, 0, -1, 0, -2, 2 });
+    int target = 0;
+    Solution sol;
 
+    vector<vector<int>> expected({ { 0, 1, 5, 5 }, { -4, 5, 5, 5 } });
+    ASSERT_EQ(sol.fourSum(input, target), expected);
+}
 
 
 TEST(DP, Fail03){
     vector<int> input({ 0, 1, 5, 0, 1, 5, 5, -4 });
     int target = 11;
-    Solution_DP sol;
+    Solution sol;
 
     vector<vector<int>> expected({ { 0, 1, 5, 5 }, { -4, 5, 5, 5 } });
     ASSERT_EQ(sol.fourSum(input, target), expected);
@@ -16,7 +23,7 @@ TEST(DP, Fail03){
 TEST(DP, Fail01){
     vector<int> input({ 0, 0, 0, 0 });
     int target = 0;
-    Solution_DP sol;
+    Solution sol;
 
     vector<vector<int>> expected({ { 0, 0, 0, 0 } });
     ASSERT_EQ(sol.fourSum(input, target), expected);
@@ -25,7 +32,7 @@ TEST(DP, Fail01){
 TEST(DP, Fail02){
     vector<int> input({ 1, 4, -3, 0, 0, 0, 5, 0 });
     int target = 0;
-    Solution_DP sol;
+    Solution sol;
 
     vector<vector<int>> expected({ { 0, 0, 0, 0 } });
     ASSERT_EQ(sol.fourSum(input, target), expected);
@@ -34,7 +41,7 @@ TEST(DP, Fail02){
 TEST(DP, Fail04){
     vector<int> input({ -5, 5, 4, -3, 0, 0, 4, -2 });
     int target = 4;
-    Solution_DP sol;
+    Solution sol;
 
     vector<vector<int>> expected({ { -3, -2, 4, 5 }, { -5, 0, 4, 5 } });
     ASSERT_EQ(sol.fourSum(input, target), expected);

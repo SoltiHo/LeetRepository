@@ -11,6 +11,31 @@ struct ListNode {
     ListNode(int x) : val(x), next(NULL) {}
 };
 
+class SolutionLatestTrial {
+public:
+    ListNode* insertionSortList(ListNode* head) {
+        ListNode* dummyHead = new ListNode(INT_MIN);
+        while (head){
+            ListNode* pNext = head->next;
+            ListNode* pSorted = dummyHead;
+            ListNode* pLast = NULL;
+            while ((pSorted) && (pSorted->val <= head->val)){
+                pLast = pSorted;
+                pSorted = pSorted->next;
+            }
+
+            pLast->next = head;
+            head->next = pSorted;
+            head = pNext;
+        }
+        head = dummyHead->next;
+        delete dummyHead;
+        
+        return head;
+    }
+};
+
+
 class Solution {
 public:
     ListNode *insertionSortList(ListNode *head) {

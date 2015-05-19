@@ -1,4 +1,5 @@
-// Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target ? Find all unique quadruplets in the array which gives the sum of target.
+// Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target ? 
+// Find all unique quadruplets in the array which gives the sum of target.
 // 
 // Note :
 //    - Elements in a quadruplet(a, b, c, d) must be in non - descending order. (ie, a ? b ? c ? d)
@@ -13,6 +14,81 @@
 #include <unordered_map>
 #include <algorithm>
 using namespace std;
+
+class Solution{
+public:
+    vector<vector<int> > fourSum(vector<int> &num, int target) {
+        vector<vector<int>> output;
+        if (num.size() >= 4){
+            sort(num.begin(), num.end());
+            vector<int> buffer(4, 0);
+            int lastLeft = -1;
+            int lastRight = -1;
+            for (int left = 0; left < num.size() - 2; ++left){
+                if ((lastLeft != -1) && (num[left] == num[lastLeft])){
+                    // repeat
+                    continue;
+                }
+                for (int right = num.size() - 1; right > left + 2; --right){
+                    if ((lastRight != -1) && (num[right] == num[lastRight])){
+                        // repeat
+                        continue;
+                    }
+                    if (num[left + 1] + num[left + 2] > target - num[left] - num[right]){
+                        // not possible
+                        continue;
+                    }
+                    if (num[right - 1] + num[right - 2] < target - num[left] - num[right]){
+                        // not possible
+                        break;
+                    }
+                    buffer[0] = num[left];
+                    buffer[3] = num[right];
+                    TwoSum(output, buffer, num, left + 1, right - 1, target - num[left] - num[right]);
+                    lastRight = right;
+                } // right for loop
+                lastRight = -1;
+                lastLeft = left;
+            } // left for loop
+        }
+        return output;
+    }
+
+    void TwoSum(vector<vector<int>>& output, vector<int>& buffer, vector<int>& num, int startIdx, int endIdx, int target){
+        // buffer is alway of size 4
+        int lastStart = -1;
+        int lastEnd = -1;
+        while (startIdx < endIdx){
+            if ((lastStart != -1) && (num[lastStart] == num[startIdx])){
+                lastStart = startIdx;
+                startIdx++;
+            }
+            else if ((lastEnd != -1) && (num[lastEnd] == num[endIdx])){
+                lastEnd = endIdx;
+                endIdx--;
+            }
+            else{
+                if (target == num[startIdx] + num[endIdx]){
+                    buffer[1] = num[startIdx];
+                    buffer[2] = num[endIdx];
+                    output.push_back(buffer);
+                    lastStart = startIdx;
+                    lastEnd = endIdx;
+                    startIdx++;
+                    endIdx--;
+                }
+                else if (target > num[startIdx] + num[endIdx]){
+                    lastStart = startIdx;
+                    startIdx++;
+                }
+                else{
+                    lastEnd = endIdx;
+                    endIdx--;
+                }
+            }
+        }
+    }
+};
 
 class Solution_DP{
 public:

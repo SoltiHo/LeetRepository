@@ -9,6 +9,30 @@
 
 using namespace std;
 
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        for (int length = s.size(); length > 0; --length){
+            for (int startIdx = 0; startIdx + length <= s.size(); ++startIdx){
+                if (isPalindrome(s, startIdx, startIdx + length - 1)){
+                    return s.substr(startIdx, length);
+                }
+            }
+        }
+    }
+
+    bool isPalindrome(string& s, int left, int right){
+        while (left < right){
+            if (s[left] != s[right]){
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+   
+};
 
 
 class Solution_Hash_UnorderedMap {
