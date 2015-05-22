@@ -15,6 +15,35 @@
 #include <algorithm>
 using namespace std;
 
+
+class Solution {
+public:
+    int minimumTotal(vector<vector<int> > &triangle) {
+        int minSum = INT_MAX;
+        vector<int> buffer(triangle.size(), 0);
+        for (auto v : triangle){
+            int prevTemp = buffer[0];
+            int currTemp = 0;
+            buffer[0] += v[0];
+            minSum = buffer[0];
+
+            for (int i = 1; i < v.size() - 1; ++i){
+                currTemp = buffer[i];
+                buffer[i] = v[i] + min(prevTemp, buffer[i]);
+                minSum = min(minSum, buffer[i]);
+                prevTemp = currTemp;
+            }
+
+            if (v.size() > 1){
+                buffer[v.size() - 1] = prevTemp + v[v.size() - 1];
+                minSum = min(minSum, buffer[v.size() - 1]);
+            }
+        }
+        return minSum;
+    }
+};
+
+
 class Solution {
 public:
     int minimumTotal(vector<vector<int> > &triangle) {
