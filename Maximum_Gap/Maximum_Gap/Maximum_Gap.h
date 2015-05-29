@@ -12,6 +12,23 @@
 #include <climits>
 using namespace std;
 
+
+class Solution {
+public:
+    int maximumGap(vector<int>& nums) {
+        int minValue = INT_MAX;
+        int maxValue = INT_MIN;
+        for (auto n : nums){
+            minValue = min(minValue, n);
+            maxValue = max(maxValue, n);
+        }
+
+        int bucketCount = (nums.size() - 1);
+        int bucketSize = (maxValue - minValue) / bucketCount;
+        vector<int> leftBoundary(bucketCount, )
+    }
+};
+
 // not my algorithm
 class Solution {
 public:
