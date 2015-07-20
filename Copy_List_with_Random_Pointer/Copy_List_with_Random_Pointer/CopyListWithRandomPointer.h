@@ -14,6 +14,77 @@ struct RandomListNode {
     RandomListNode(int x) : label(x), next(NULL), random(NULL) {}
 };
 
+class Solution_Latest_UsingConstMemory {
+public:
+    RandomListNode *copyRandomList(RandomListNode *head) {
+        RandomListNode* pOutput = NULL;
+        if (head){
+            RandomListNode* pCurr = head;
+            while (pCurr){
+                RandomListNode* pTemp = pCurr->next;
+                pCurr->next = new RandomListNode(pCurr->label);
+                pCurr->next->next = pTemp;
+                pCurr = pTemp;
+            }
+
+            // set random pointer
+            pCurr = head;
+            while (pCurr){
+                pCurr->next->random = pCurr->random ? pCurr->random->next : NULL;
+                pCurr = pCurr->next->next;
+            }
+
+            // split the 2 lists
+            pCurr = head;
+            pOutput = pCurr->next;
+            RandomListNode* clonedTail = pOutput;
+            while (pCurr){
+                pCurr->next = pCurr->next->next;
+                clonedTail->next = clonedTail->next ? clonedTail->next->next : NULL;
+
+                pCurr = pCurr->next;
+                clonedTail = clonedTail->next;
+            }
+        }
+        return pOutput;
+    }
+};
+
+class Solution_Latest_UsingMoreMemory {
+public:
+    RandomListNode *copyRandomList(RandomListNode *head) {
+        RandomListNode* pOutput = NULL;
+        if (head){
+            unordered_map<RandomListNode*, RandomListNode*> nodeMapping;
+            RandomListNode* clonedTail = new RandomListNode(head->label);
+            nodeMapping[head] = clonedTail;
+            pOutput = clonedTail;
+
+            RandomListNode* pCurr = head->next;
+            while (pCurr){
+                clonedTail->next = new RandomListNode(pCurr->label);
+                clonedTail = clonedTail->next;
+                nodeMapping[pCurr] = clonedTail;
+                pCurr = pCurr->next;
+            }
+
+            // set random pointer
+            pCurr = head;
+            clonedTail = pOutput;
+            while (pCurr){
+                if (pCurr->random){
+                    clonedTail->random = nodeMapping[pCurr->random];
+                }
+                pCurr = pCurr->next;
+                clonedTail = clonedTail->next;
+            }
+
+        }
+        return pOutput;
+    }
+};
+
+
 class Solution_LatestTrial_Fast {
 public:
     RandomListNode *copyRandomList(RandomListNode *head) {

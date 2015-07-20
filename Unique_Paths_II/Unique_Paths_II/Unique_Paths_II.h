@@ -16,6 +16,39 @@
 #include <vector>
 using namespace std;
 
+
+class Solution_Latest {
+public:
+    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+        int output = 0;
+        const int rowCount = obstacleGrid.size();
+        if (rowCount){
+            const int colCount = obstacleGrid[0].size();
+            if ((colCount > 0) && (obstacleGrid[0][0] != 1)){
+                obstacleGrid[0][0] = 1; // seed, cannot be erased
+                
+                for (int rowIdx = 0; rowIdx < rowCount; ++rowIdx){
+                    for (int colIdx = 0; colIdx < colCount; ++colIdx){
+                        if (obstacleGrid[rowIdx][colIdx] == 1){
+                            // obstacle, mark it to be 0. 
+                            if ((rowIdx != 0) || (colIdx != 0)){
+                                obstacleGrid[rowIdx][colIdx] = 0;
+                            }
+                        }
+                        else{
+                            // sum the path
+                            obstacleGrid[rowIdx][colIdx] += (rowIdx > 0 ? obstacleGrid[rowIdx - 1][colIdx] : 0);
+                            obstacleGrid[rowIdx][colIdx] += (colIdx > 0 ? obstacleGrid[rowIdx][colIdx - 1] : 0);
+                        }
+                    }
+                }
+                output = obstacleGrid[rowCount - 1][colCount - 1];
+            }
+        }
+        return output;
+    }
+};
+
 class Solution {
 public:
     int uniquePathsWithObstacles(vector<vector<int> > &obstacleGrid) {

@@ -13,6 +13,67 @@
 
 #include <cmath>
 using namespace std;
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        bool output = false;
+        if (x > 0){
+            const int numDigits = log10(x) + 1;
+
+            if (numDigits > 1){
+                const int half = numDigits >> 1;
+
+                int reversedLowerDigits = 0;
+                int factor = 1;
+                for (int i = 0; i < half; ++i){
+                    reversedLowerDigits = reversedLowerDigits * 10 + ((x / factor) % 10);
+                    factor *= 10;
+                }
+
+                output = ((int)(x / pow(10, numDigits - half)) == reversedLowerDigits);
+
+            }
+            else{
+                // single digit
+                output = true;
+            }
+        }
+        else if (x == 0){
+            output = true;
+        }
+        return output;
+    }
+};
+
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        bool output = false;
+        if (x >= 0){
+            const int numDigits = log10(x) + 1;
+            int factor = pow(10, numDigits - 1);
+            bool mismatchFound = false;
+            while (factor >= 10){
+                if (((x / factor) % 10) != x % 10){
+                    // not equal
+                    mismatchFound = true;
+                    break;
+                }
+                else{
+                    x /= 10;
+                    factor /= 100;
+                }
+            }
+            output = !mismatchFound;
+        }
+
+
+        return output;
+    }
+};
+
 class Solution {
 public:
     bool isPalindrome(int x) {

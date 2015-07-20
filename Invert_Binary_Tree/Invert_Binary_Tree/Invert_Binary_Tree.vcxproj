@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5A48DF6C-10F0-4799-8930-178499F49BFC}</ProjectGuid>
+    <ProjectGuid>{34460FCD-97B5-4D35-B387-EA9A90002351}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Text_Justification_ULT</RootNamespace>
+    <RootNamespace>Invert_Binary_Tree</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -41,7 +41,6 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Leet\LeetRepository\Text_Justification\Text_Justification;C:\Users\cho14\Desktop\UnitTest\gtest-1.7.0;C:\Users\cho14\Desktop\UnitTest\gtest-1.7.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -79,15 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GoogleTest\GoogleTest.vcxproj">
-      <Project>{4b3a2591-dd5e-45b9-8ee4-0ea331b9a70a}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Text_Justification\Text_Justification.vcxproj">
-      <Project>{3a6516a9-a8db-4a23-940b-93ce681d6656}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Text_Justification_ULT.cpp" />
+    <ClInclude Include="Invert_Binary_Tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

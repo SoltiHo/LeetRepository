@@ -13,6 +13,30 @@ bool equal(vector<string>& a, vector<string>& b){
     return true;
 }
 
+TEST(LeetCode, Fail05){
+    vector<string> input = { "a" };
+    int L = 2;
+
+    Solution sol;
+    vector<string> output = sol.fullJustify(input, L);
+    vector<string> expected =
+    { "a " };
+
+    ASSERT_TRUE(equal(output, expected));
+}
+
+TEST(LeetCode, Fail04){
+    vector<string> input = { "a" };
+    int L = 1;
+
+    Solution sol;
+    vector<string> output = sol.fullJustify(input, L);
+    vector<string> expected =
+    { "a"};
+
+    ASSERT_TRUE(equal(output, expected));
+}
+
 TEST(LeetCode, Fail03){
     vector<string> input = { "Listen", "to", "many,", "speak", "to", "a", "few." };
     int L = 6;

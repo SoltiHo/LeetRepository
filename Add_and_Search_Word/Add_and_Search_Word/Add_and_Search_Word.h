@@ -51,7 +51,7 @@ public:
         return DFS(&(this->root), word, 0);
     }
 
-    bool DFS(TrieNode* pCurr, string word, int depth){
+    bool DFS(TrieNode* pCurr, string& word, int depth){
         if (depth == word.size()){
             if ((pCurr != NULL) && (pCurr->isString == false)){
                 return false;

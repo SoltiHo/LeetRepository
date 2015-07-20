@@ -25,6 +25,60 @@ using namespace std;
 
 class Solution {
 public:
+    vector<string> fullJustify(vector<string>& words, int maxWidth) {
+        vector<string> output;
+        while ((words.size() > 0) && (words[0].size() > 0)){
+            int currLineLength = words[0].size();
+            int currWordIdx = 1;
+            while ((currWordIdx < words.size()) && (currLineLength + 1 + words[currWordIdx].size() <= maxWidth)){
+                currLineLength += (1 + words[currWordIdx].size());
+                currWordIdx++;
+            }
+
+            int extraSpaceCount = maxWidth - currLineLength;  // could be distributed evenly or attach to the end if last line
+            int minSpacesInserted = 1;
+            int bonusSpaceCount = 0;
+            string temp = words[0];
+            if ((currWordIdx != words.size()) && (currWordIdx != 1)){
+                // not the last line
+                // modify the parameters for regular lines
+                minSpacesInserted += extraSpaceCount / (currWordIdx - 1);
+                bonusSpaceCount = extraSpaceCount - ((extraSpaceCount / (currWordIdx - 1)) * (currWordIdx - 1));
+            }
+            else if (currWordIdx == 1){
+                // 1 word line
+                temp.insert(temp.size(), string(extraSpaceCount, ' '));
+            }
+            else{
+                // the last line
+                if (extraSpaceCount > 0){
+                    words.push_back(string(extraSpaceCount - 1, ' '));
+                    currWordIdx++;
+                }
+            }
+
+            for (int i = 1; i < currWordIdx; ++i){
+                temp.insert(temp.size(), string(minSpacesInserted, ' '));
+                if (bonusSpaceCount){
+                    temp.push_back(' ');
+                    bonusSpaceCount--;
+                }
+                temp.insert(temp.size(), words[i]);
+            }
+            output.push_back(temp);
+            words.erase(words.begin(), words.begin() + currWordIdx);
+        }
+
+        if (output.size() == 0){
+            output.push_back(string(maxWidth, ' '));
+        }
+        return output;
+    }
+};
+
+
+class Solution_OLD {
+public:
     vector<string> fullJustify(vector<string> &words, int L) {
         vector<string> output;
 

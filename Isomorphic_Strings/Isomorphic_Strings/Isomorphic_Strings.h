@@ -19,7 +19,28 @@
 #include <algorithm>
 using namespace std;
 
+class Solution_Latest {
+public:
+    bool isIsomorphic(string s, string t) {
+        if (s.size() != t.size()){
+            return false;
+        }
 
+        vector<int> s2t_mapping(256, -1);
+        vector<int> t2s_mapping(256, -1);
+        for (int i = 0; i < s.size(); ++i){
+            if ((s2t_mapping[s[i]] == -1) && (t2s_mapping[t[i]] == -1)){
+                // first time 
+                s2t_mapping[s[i]] = t[i];
+                t2s_mapping[t[i]] = s[i];
+            }
+            else if ((s2t_mapping[s[i]] != t[i]) || (t2s_mapping[t[i]] != s[i])){
+                return false;
+            }
+        }
+        return true;
+    }
+};
 
 class Solution {
 public:

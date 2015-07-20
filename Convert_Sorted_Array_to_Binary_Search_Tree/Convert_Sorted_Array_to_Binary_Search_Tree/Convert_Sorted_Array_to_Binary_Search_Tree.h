@@ -11,7 +11,28 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+class Solution {
+public:
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        TreeNode* pOutput = NULL;
+        const int numsSize = nums.size();
+        if (numsSize > 0){
+            pOutput = buildTree(nums, 0, numsSize);
+        }
+        return pOutput;
+    }
 
+    TreeNode* buildTree(vector<int>& nums, int firstIdx, int nodeCount){
+        TreeNode* pOutput = NULL;
+        if (nodeCount){
+            int rootIdx = firstIdx + (nodeCount >> 1);
+            pOutput = new TreeNode(nums[rootIdx]);
+            pOutput->left = buildTree(nums, firstIdx, nodeCount >> 1);
+            pOutput->right = buildTree(nums, firstIdx + (nodeCount >> 1) + 1, nodeCount - (nodeCount >> 1) - 1);  // total - leftSub nodes - root node
+        }
+        return pOutput;
+    }
+};
 
 class Solution {
 public:

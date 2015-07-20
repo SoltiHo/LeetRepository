@@ -28,6 +28,37 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+
+class Solution_DFS {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> output;
+        DFS(output, 0, root);
+        return output;
+    }
+
+    void DFS(vector<vector<int>>& output, int depth, TreeNode* root){
+        if (root){
+            if (output.size() == depth){
+                // new level
+                output.push_back(vector<int>(1, root->val));
+            }
+            else{
+                if (depth % 2){
+                    output[depth].insert(output[depth].begin(), root->val);
+                }
+                else{
+                    output[depth].push_back(root->val);
+                }
+                
+            }
+            DFS(output, depth + 1, root->left);
+            DFS(output, depth + 1, root->right);
+
+        }
+    }
+};
+
 class Solution {
 public:
     vector<vector<int> > zigzagLevelOrder(TreeNode *root) {
@@ -72,7 +103,7 @@ public:
                     pCurr = rightFirst.top();
                     rightFirst.pop();
                     if (firstInCurrentLevel){
-                        output.push_back({pCurr->val});
+                        output.push_back({ pCurr->val });
                         firstInCurrentLevel = false;
                     }
                     else{

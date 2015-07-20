@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5A48DF6C-10F0-4799-8930-178499F49BFC}</ProjectGuid>
+    <ProjectGuid>{70AD3FF4-B94E-43D8-B707-7A41E3188BDD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Text_Justification_ULT</RootNamespace>
+    <RootNamespace>Contains_Duplicate_III_ULT</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Leet\LeetRepository\Text_Justification\Text_Justification;C:\Users\cho14\Desktop\UnitTest\gtest-1.7.0;C:\Users\cho14\Desktop\UnitTest\gtest-1.7.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Leet\LeetRepository\Contains_Duplicate_III\Contains_Duplicate_III;C:\Users\cho14\Desktop\UnitTest\gtest-1.7.0\include;C:\Users\cho14\Desktop\UnitTest\gtest-1.7.0\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -79,15 +79,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GoogleTest\GoogleTest.vcxproj">
-      <Project>{4b3a2591-dd5e-45b9-8ee4-0ea331b9a70a}</Project>
+    <ProjectReference Include="..\Contains_Duplicate_III\Contains_Duplicate_III.vcxproj">
+      <Project>{228b31a9-bc24-456d-ac61-ac17f45ba24b}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\Text_Justification\Text_Justification.vcxproj">
-      <Project>{3a6516a9-a8db-4a23-940b-93ce681d6656}</Project>
+    <ProjectReference Include="..\GoogleTest\GoogleTest.vcxproj">
+      <Project>{16ca86a8-cc90-4a41-a3da-47f2767f5c2d}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Text_Justification_ULT.cpp" />
+    <ClCompile Include="Contains_Duplicate_III_ULT.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
